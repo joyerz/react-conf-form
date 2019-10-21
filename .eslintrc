@@ -1,0 +1,73 @@
+{
+  "parser": "@typescript-eslint/parser",
+  "env": {
+    "es6": true,
+    "node": true,
+    "browser": true,
+    "commonjs": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "experimentalObjectRestSpread": true,
+      "legacyDecorators": true,
+      "jsx": true
+    }
+  },
+  "settings": {
+    "import/resolver": {
+      "alias": {
+        "map": [
+          ["@src", "./src"],
+          ["@com", "./src/components"],
+          ["@utils", "./src/utils"],
+          ["@assets", "./src/assets"],
+          ["@conf", "./src/conf"],
+          ["@pages", "./src/pages"]
+        ],
+        "extensions": [".js", ".jsx", ".json", ".ts", ".tsx"]
+      }
+    }
+  },
+  "plugins": ["react", "@typescript-eslint"],
+  "extends": ["airbnb-typescript", "eslint:recommended"//    "eslint-config-alloy/typescript"
+  ],
+  "rules": {
+    "react/prop-types": 0,
+    "react/display-name": [0],
+    "react/jsx-uses-react": "error",
+    "react/jsx-uses-vars": "error",
+    "no-console": "off",
+    "indent": ["error", 2],
+    "no-unused-vars": "off",
+    "linebreak-style": [0],
+    "quotes": ["error", "single"],
+    "no-multiple-empty-lines": [2, { "max": 2 }],
+    "semi": ["error", "never"], //["error", "always"]
+    "import/no-cycle": "off",
+    "no-undef": 0,
+    "import/no-extraneous-dependencies": 0,
+    "import/extensions": 0,
+    "import/no-unresolved": 0,
+    "import/no-duplicates": 0,
+    "import/no-named-as-default": 0,
+    "import/no-named-as-default-member": 0,
+    "import/order": 0,
+//    "func-names": ["error", "always"],
+    "import/no-self-import": 0,
+    "no-useless-constructor": "off",
+    "@typescript-eslint/indent": ["error", 2],
+    "@typescript-eslint/semi": ["error", "never"],
+    "@typescript-eslint/no-unused-vars": "error",
+    "@typescript-eslint/no-useless-constructor": "error",
+    "brace-style": "off",
+    "@typescript-eslint/brace-style": [0],
+    "no-return-await": "off",
+    "prefer-destructuring": ["off"],
+    "react/destructuring-assignment": ["off"],
+    "consistent-return": "off",
+    "func-names": 0,
+    "object-shorthand": ["error", "properties"]
+  }
+}
