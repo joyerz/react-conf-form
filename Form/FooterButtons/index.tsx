@@ -6,6 +6,12 @@ interface Props extends FieldsConfT {
   onButtonClick: (type: string, cb?: Function) => void
 }
 
+const alignMap = {
+  left: 'flex-start',
+  center: 'center',
+  right: 'flex-end',
+}
+
 export default function FooterButtons(props: Props) {
   const {
     style,
@@ -14,7 +20,7 @@ export default function FooterButtons(props: Props) {
     ...rest
   } = props
   const wrapperStyle = {
-    justifyContent: align || 'center',
+    justifyContent: alignMap[align || 'center'],
     ...style,
   }
   return (

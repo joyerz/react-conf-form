@@ -30,7 +30,7 @@ export default function (props: Props): any {
         addon,
         style = {},
         ...rest
-      } = button.props
+      } = button.props || {}
 
       let buttonType: any
       const index = buttonTypes.findIndex(item => item === type)
