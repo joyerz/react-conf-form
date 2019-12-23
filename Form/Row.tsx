@@ -1,7 +1,14 @@
 import * as React from 'react'
 import { Row, Col, Form } from 'antd'
+// import Row from 'antd/es/row'
+// import Col from 'antd/es/col'
+// import Form from 'antd/es/form'
+// import 'antd/es/row/style'
+// import 'antd/es/col/style'
+// import 'antd/es/form/style'
+
 import { DEFAULT_GUTTER, DEFAULT_SPAN } from '@Form/config'
-import ButtonGroup from './ButtonGroup'
+import ButtonGroup from './FooterButtons/ButtonGroup'
 import { FieldsConfT, FieldItemT } from './index.d'
 import Field from './Field'
 
@@ -52,16 +59,18 @@ export default (props: Props): any => {
             key,
             span = DEFAULT_SPAN,
             label,
-            addon,
             display = true,
           } = field
+
+          const { rules, addon } = field.props
 
           return display
             ? (
               <Col key={field.key} span={span}>
                 <Form.Item
+                  className={field.className}
                   label={['button', 'render'].indexOf(field.type) === -1 ? label : undefined}
-                  required={field.props?.rules && field.props?.rules.indexOf('required') !== -1}
+                  required={rules && rules.indexOf('required') !== -1}
                   validateStatus={
                     (validation[key] && !validation[key].validated)
                       ? 'error'
@@ -76,9 +85,10 @@ export default (props: Props): any => {
                   <Field
                     {...field}
                     name={key}
+                    key={key}
                     data={data}
-                    value={data[key]}
                     onChange={onChange}
+                    value={data[key]}
                   />
                   {addon && addon(data)}
                 </Form.Item>

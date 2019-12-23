@@ -14,7 +14,7 @@ type Props = {
 
 class Home extends React.Component<Props, any> {
   componentDidMount(): void {
-    this.props.actionList({ page: 1, type: '1' })
+    // this.props.actionList({ page: 1, type: '1' })
   }
 
   render() {

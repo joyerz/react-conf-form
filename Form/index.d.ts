@@ -29,8 +29,9 @@ export interface FieldsConfT {
     rules: Array<string>
     [key: string]: any
   },
-  style?: Object,
-  className?: string,
+  style?: Object
+  className?: string
+  display?: boolean
 }
 
 export interface FieldItemT {
@@ -38,28 +39,34 @@ export interface FieldItemT {
   key: string
   type: string
   label?: string | React.ReactNode
-  props?: FieldProps
+  props?: FieldPropsT
   render?: (data: Object) => any
   className?: string
   addon?: any
+  readOnly?: boolean
   display?: boolean // display or not
 }
 
-type FieldProps = {
+
+type FieldPropsT = {
   rules?: Array<any>,
   [key: string]: any
 }
 
 export interface ButtonT {
   span?: number
+  gutter?: number
   label: string
   key: string
-  className?: string
-  type?: string
-  spaceBetween?: number
-  cb?: (data: Object) => any
   display?: boolean
-  addon?: (data: Object) => any
+  props?: {
+    type?: string
+    className?: string
+    cb?: (data: Object) => any
+    style?: any
+    addon?: (data: Object) => any
+    [name: string]: any
+  }
 }
 
 export type ButtonType = 'default' | 'primary' | 'danger' | 'link' | 'ghost'
@@ -94,4 +101,27 @@ export interface FieldRenderProps {
 export interface ExtendField {
   name: string
   component: any //React.Component<FieldRenderProps, any>,
+}
+
+export interface FieldComponentProps {
+  name: string,
+  data: any,
+  onChange: (key: string, value: any) => any
+  props: {
+    className: string & ButtonType,
+    onClick?: (data: Object) => any
+    beforeChange?: (key: string, value: any) => any
+    onChange?: (key: string, value: any) => any
+    items?: Array<labelValueObject>
+    [name: string]: any
+  }
+  display?: boolean
+  readonly?: boolean
+  value?: any,
+  [name: string]: any
+}
+
+export interface labelValueObject {
+  label: string,
+  value: any
 }

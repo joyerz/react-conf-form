@@ -68,6 +68,8 @@
     "react/destructuring-assignment": ["off"],
     "consistent-return": "off",
     "func-names": 0,
-    "object-shorthand": ["error", "properties"]
+    "object-shorthand": ["error", "properties"],
+    "jsx-a11y/no-static-element-interactions": 0,
+    "jsx-a11y/click-events-have-key-events": 0
   }
 }

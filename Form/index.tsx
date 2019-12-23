@@ -6,6 +6,7 @@ import FormValidator from './utils/FormValidator'
 import Row from './Row'
 import { RJFormProps, FieldsConfT } from './index.d'
 import { addLabelStyleWidth } from '@Form/utils/common'
+import FooterButtons from './FooterButtons'
 
 import './index.scss'
 
@@ -15,7 +16,6 @@ export default class RJForm extends React.Component<RJFormProps, State> {
   static defaultProps = {
     spinning: false,
     validateOnChange: true,
-    // theme: '',
     dataSource: {},
     extendValidators: [],
     extendFields: [],
@@ -49,7 +49,7 @@ export default class RJForm extends React.Component<RJFormProps, State> {
    * get data from dataSource or local data,
    * and also set up "validation"
    */
-  convertDataFromFields = memoize((fields: Array<any>, dataSource: {}) => {
+  convertDataFromFields = memoize((fields: Array<any>, dataSource: any = {}) => {
     fields.forEach((row: any) => {
       if (row.type !== 'FormButtons') {
         row.fields.forEach((item: any) => {
@@ -94,7 +94,11 @@ export default class RJForm extends React.Component<RJFormProps, State> {
    * @param value
    */
   onChange = (key: string, value: any): void => {
-    this.data[key] = value
+    // console.log('did change', key, value)
+    this.data = {
+      ...this.data,
+      [key]: value,
+    }
     if (this.props.validateOnChange && this.validation[key]) {
       this.validation[key] = {
         ...FormValidator.check(value, this.validation[key].rules),
@@ -140,6 +144,8 @@ export default class RJForm extends React.Component<RJFormProps, State> {
     if (e) e.preventDefault()
     if (!this.validate()) return
 
+    console.log('submit data', this.data)
+
     if (this.props.onSubmit) this.props.onSubmit(this.data)
   }
 
@@ -183,24 +189,37 @@ export default class RJForm extends React.Component<RJFormProps, State> {
       fields, dataSource, labelDirection, labelWidth,
     } = this.props
     this.isDataSourceChanged(dataSource)
-    this.convertDataFromFields(fields, dataSource) // 从fields配置里取得数据结构
+    this.convertDataFromFields(fields, dataSource) // data to fields
     addLabelStyleWidth(labelWidth, labelDirection)
+
     return (
       <Spin spinning={this.props.spinning}>
         <form onSubmit={this.onSubmit}>
           {fields.map((field: FieldsConfT, idx: number) => {
             const key = `row_${idx}`
-            return (
-              <Row
-                key={key}
-                {...field}
-                onButtonClick={this.onButtonClick}
-                data={this.data}
-                validation={this.validation}
-                labelDirection={labelDirection}
-                onChange={this.onChange}
-              />
-            )
+            const display = field.display === undefined ? true : field.display
+            const type = field.type || 'field'
+            if (!display) return null
+
+            return type === 'field'
+              ? (
+                <Row
+                  key={key}
+                  {...field}
+                  onButtonClick={this.onButtonClick}
+                  data={this.data}
+                  validation={this.validation}
+                  labelDirection={labelDirection}
+                  onChange={this.onChange}
+                />
+              )
+              : (
+                <FooterButtons
+                  key={key}
+                  {...field}
+                  onButtonClick={this.onButtonClick}
+                />
+              )
           })}
         </form>
       </Spin>

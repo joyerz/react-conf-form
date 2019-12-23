@@ -4,6 +4,7 @@ const TerserJSPlugin = require('terser-webpack-plugin')
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const MiniCss = require('mini-css-extract-plugin')
+// const Visualizer = require('webpack-visualizer-plugin')
 
 module.exports = {
   mode: 'production',
@@ -53,16 +54,16 @@ module.exports = {
 
   module: {
     rules: [
-      {
-        loader: 'webpack-ant-icon-loader',
-        enforce: 'pre',
-        // options:{
-        //   chunkName:'antd-icons'
-        // },
-        include: [
-          require.resolve('@ant-design/icons/lib/dist'),
-        ],
-      },
+      // {
+      //   loader: 'webpack-ant-icon-loader',
+      //   enforce: 'pre',
+      //   // options: {
+      //   //   chunkName: 'antd-icons',
+      //   // },
+      //   include: [
+      //     require.resolve('@ant-design/icons/lib/dist'),
+      //   ],
+      // },
       {
         test: /\.(ts|tsx)$/,
         exclude: /node_modules/,
@@ -156,6 +157,10 @@ module.exports = {
       filename: 'index.css',
     }),
 
+    // new Visualizer({
+    //   filename: './statistics.html',
+    // }),
+
     // /* 压缩优化代码结束 */
     // new WebpackHTMLPlugin({
     //   template: path.resolve(__dirname, '../src/index.html'),
@@ -164,24 +169,17 @@ module.exports = {
     // }),
   ],
   externals: {
-    moment: 'moment',
-    Immutable: 'seamless-immutable',
-    'redux-actions': 'redux-actions',
-    'react-redux': 'react-redux',
-    'react-redux-creator': 'react-redux-creator',
-    redux: 'redux',
-    'redux-saga': 'redux-saga',
+    antd: 'antd',
+    '@ant-design': '@ant-design',
+    '@ant-icons': '@ant-icons',
     react: 'react',
     'react-dom': 'react-dom',
     'react-router': 'react-router',
     'react-router-dom': 'react-router-dom',
-    axios: 'axios',
+    moment: 'moment',
     classnames: 'classnames',
     '@types/axios': '@types/axios',
     'memoize-one': 'memoize-one',
     memoize: 'memoize-one',
-    antd: 'antd',
-    '@ant-design': '@ant-design',
-    'connected-react-router': 'connected-react-router',
   },
 }

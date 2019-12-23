@@ -3,11 +3,35 @@ import { FieldItemT, ExtendField } from '../index.d'
 import Render from './Render'
 import Input from './Input'
 import Button from './Button'
+import Select from './Select'
+import Timepicker from './Timepicker'
+import Rangepicker from './Rangepicker'
+import Datepicker from './Datepicker'
+import CascaderField from './Cascader'
+import UploadBox from './Upload'
+import AutoComplete from './AutoComplete'
+import InputPassword from './InputPassword'
+import InputNumber from './InputNumber'
+import Textarea from './Textarea'
+import Radio from './Radio'
+import Checkbox from './Checkbox'
 
 const map = {
   render: Render,
   input: Input,
   button: Button,
+  select: Select,
+  timepicker: Timepicker,
+  rangepicker: Rangepicker,
+  datepicker: Datepicker,
+  cascader: CascaderField,
+  inputPassword: InputPassword,
+  inputNumber: InputNumber,
+  textarea: Textarea,
+  radio: Radio,
+  checkbox: Checkbox,
+  upload: UploadBox,
+  autoComplete: AutoComplete,
 }
 
 /* Add extract field */

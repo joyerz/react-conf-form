@@ -43,19 +43,38 @@ module.exports = {
         test: /\.(ts|tsx)$/,
         exclude: /node_modules/,
         // use: ['awesome-typescript-loader', 'eslint-loader']
-        use: ['babel-loader', 'eslint-loader'],
+        // use: ['babel-loader', 'eslint-loader'],
+        use: ['babel-loader'],
       },
-      {
-        test: /\.(js|jsx)$/,
-        exclude: /node_modules/,
-        use: ['babel-loader', 'eslint-loader'],
-      },
+      // {
+      //   test: /\.(js|jsx)$/,
+      //   exclude: /node_modules/,
+      //   use: ['babel-loader', 'eslint-loader'],
+      // },
       { enforce: 'pre', test: /\.(js|ts)$/, loader: 'source-map-loader' },
       {
         oneOf: [
           {
+            test: /\.css$/,
+            include: [/node_modules[\\/]antd/, /dist/],
+            use: [
+              {
+                loader: MiniCss.loader,
+                options: {
+                  // you can specify a publicPath here
+                  // by default it uses publicPath in webpackOptions.output
+                  publicPath: '../',
+                  hmr: process.env.NODE_ENV === 'development',
+                },
+              },
+              {
+                loader: 'css-loader',
+              },
+            ],
+          },
+          {
             test: /\.less$/,
-            include: /node_modules[\\/]antd/,
+            include: [/node_modules[\\/]antd/, /node_modules[\\/]react-conf-form/],
             use: [
               {
                 loader: MiniCss.loader,
@@ -146,7 +165,7 @@ module.exports = {
   // stats: 'errors-only',
   devServer: {
     contentBase: path.resolve(__dirname, '../dist'),
-    port: 3000,
+    port: 3022,
     host: '0.0.0.0',
     proxy: {
       '/api/**': {

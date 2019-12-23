@@ -81,6 +81,35 @@ class Validation {
       },
       errorMsg: '必须要符合货币格式,如 10.23',
     },
+
+    price_format: {
+      validator: (value: any, length: any = 8) => {
+        let stringValue = ''
+        if (notEmptyValue(value)) stringValue = value.toString()
+        const reg = new RegExp(`^(\\+|\\-)?[0-9]{1,${length}}(\\.[0-9]{1,2})?$`)
+        return reg.test(stringValue)
+      },
+      errorMsg: (length: any = 6) => `最大${length}位整数，小数不超过2位`,
+    },
+
+    /* 整数部分最大值 */
+    positive_max_length: {
+      validator: (value: any, length: number) => {
+        if (parseFloat(value) !== value) return false
+        const stringValue = value.toString()
+        if (stringValue && stringValue.length > length) {
+          if (stringValue.indexOf('.') !== -1) {
+            const p = stringValue.split('.')
+            if (p[0].length > length) return false
+          } else if (stringValue.length > length) {
+            return false
+          }
+        }
+        return true
+      },
+      errorMsg: (length: number) => `整数长度不大于${length}`,
+    },
+
     telephone: {
       validator: (value: string) => /^0\d{2,3}-\d{7,8}$/.test(value),
       errorMsg: '需符合（区号-电话号码）的格式',
@@ -104,7 +133,7 @@ class Validation {
     },
     // 用户名
     username: {
-      validator: (value: string) => /^([a-zA-Z0-9_-]{2,20})$/.test(value),
+      validator: (value: string) => /^([a-zA-Z0-9_-]{5,20})$/.test(value),
       errorMsg: '由长度为5～20位的数字、字母组成',
     },
     // 密码
@@ -116,18 +145,6 @@ class Validation {
     id_card: {
       validator: (value: string) => /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/.test(value),
       errorMsg: '身份证号码不符合',
-    },
-    vin: { // 车架号
-      validator: (value: string) => /^([a-zA-Z0-9_-]{17})$/.test(value),
-      errorMsg: '由长度为17位的数字、字母组成',
-    },
-    engine_no: { // 发动机号
-      validator: (value: string) => /^([a-zA-Z0-9_-]{6,20})$/.test(value),
-      errorMsg: '由长度为6~20位的数字、字母组成',
-    },
-    license_plate_number: { // 车牌号
-      validator: (value: string) => /^([\u4E00-\u9FA5][a-zA-Z0-9_-]{6,7})$/.test(value),
-      errorMsg: '由长度为7~8位的中文、数字、字母组成',
     },
   }
 

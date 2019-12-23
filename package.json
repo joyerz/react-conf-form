@@ -1,18 +1,20 @@
 {
   "name": "react-conf-form",
-  "version": "0.0.4",
+  "version": "1.0.10",
   "main": "index.js",
   "typings": "Form/index.d.ts",
   "files": [
     "dist",
-    "Form/index.d.ts"
+    "Form/index.d.ts",
+    "index.dev.js",
+    "index.prod.js"
   ],
-
   "license": "MIT",
   "scripts": {
     "start": "webpack-dev-server --config ./build/webpack.config.js --history-api-fallback --inline",
     "build": "webpack --config ./build/webpack.build.js && webpack --config ./build/webpack.build.dev.js",
-    "buildDev": "webpack --config ./build/webpack.build.dev.js"
+    "buildDev": "webpack --config ./build/webpack.build.dev.js",
+    "prod": "webpack --config ./build/webpack.build.js"
   },
   "dependencies": {
     "@babel/polyfill": "^7.6.0",
@@ -22,7 +24,8 @@
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "react-redux-creator": "^0.3.9",
-    "react-router": "5.0.0"
+    "react-router": "5.0.0",
+    "webpack-visualizer-plugin": "^0.1.11"
   },
   "devDependencies": {
     "@babel/cli": "^7.4.4",
@@ -81,7 +84,7 @@
     "source-map-loader": "^0.2.4",
     "terser-webpack-plugin": "^2.1.2",
     "ts-loader": "^6.0.4",
-    "typescript": "3.7.0-beta",
+    "typescript": "^3.7.3",
     "typescript-eslint-parser": "^22.0.0",
     "webpack": "^4.30.0",
     "webpack-ant-icon-loader": "^1.0.8",
