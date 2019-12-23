@@ -49,7 +49,7 @@ export default class RJForm extends React.Component<RJFormProps, State> {
    * get data from dataSource or local data,
    * and also set up "validation"
    */
-  convertDataFromFields = memoize((fields: Array<any>, dataSource: any = {}) => {
+  convertDataFromFields = memoize((fields: Array<any>, dataSource: any) => {
     fields.forEach((row: any) => {
       if (row.type !== 'FormButtons') {
         row.fields.forEach((item: any) => {
@@ -189,7 +189,7 @@ export default class RJForm extends React.Component<RJFormProps, State> {
       fields, dataSource, labelDirection, labelWidth,
     } = this.props
     this.isDataSourceChanged(dataSource)
-    this.convertDataFromFields(fields, dataSource) // data to fields
+    this.convertDataFromFields(fields, dataSource || {}) // data to fields
     addLabelStyleWidth(labelWidth, labelDirection)
 
     return (
