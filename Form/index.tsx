@@ -105,6 +105,9 @@ export default class RJForm extends React.Component<RJFormProps, State> {
         rules: this.validation[key].rules,
       }
     }
+    if (this.props.onChange) {
+      this.props.onChange(key, value, this.data)
+    }
     this.setState({})
   }
 

@@ -39,7 +39,7 @@ render() {
 | fields           | Array<...>                 | -             | fields                  |
 | dataSource       | Object                     | -             | data mapping the fields |
 | onSubmit         | (data) => void             | -             |                         |
-| onChange         | (key, value) => void       | -             | on any field change     |
+| onChange         | (key, value, data) => void | -             | on any field change     |
 | onReset          | () => void                 | -             |                         |
 | extendFields     | Array<ExtendField>         | -             |                         |
 | extendValidators | Array<ExtendValidator>     | -             |                         |
