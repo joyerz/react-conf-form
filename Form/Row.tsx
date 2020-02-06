@@ -8,12 +8,11 @@ import { Row, Col, Form } from 'antd'
 // import 'antd/es/form/style'
 
 import { DEFAULT_GUTTER, DEFAULT_SPAN } from '@Form/config'
-import ButtonGroup from './FooterButtons/ButtonGroup'
 import { FieldsConfT, FieldItemT } from './index.d'
 import Field from './Field'
 
 type Props = FieldsConfT & {
-  onButtonClick: (type: string, cb?: Function) => void
+  // onButtonClick: (type: string, cb?: Function) => void
   onChange: (name: string, value: any) => any
   data: Object
   validation: Object
@@ -22,11 +21,8 @@ type Props = FieldsConfT & {
 
 export default (props: Props): any => {
   const {
-    onButtonClick,
     gutter = DEFAULT_GUTTER,
     type,
-    align = 'left',
-    style = {},
     className = '',
     fields,
     data,
@@ -38,26 +34,13 @@ export default (props: Props): any => {
   return (
     <Row gutter={gutter}>
       <div className={`${className} ${labelDirection}`}>
-        {/* 按钮组合 */}
-        {type === 'FormButtons' && (
-          <div
-            className="react-conf-form-button-row-wrapper"
-            style={Object.assign({ textAlign: align }, style)}
-          >
-            <ButtonGroup
-              fields={fields}
-              gutter={gutter}
-              data={data}
-              onButtonClick={onButtonClick}
-            />
-          </div>
-        )}
 
         {/* 非按钮控件组合 */}
         {type !== 'FormButtons' && fields.map((field: FieldItemT) => {
           const {
             key,
-            span = DEFAULT_SPAN,
+            span = props.span || DEFAULT_SPAN,
+            offset = 0,
             label,
             display = true,
           } = field
@@ -66,7 +49,7 @@ export default (props: Props): any => {
 
           return display
             ? (
-              <Col key={field.key} span={span}>
+              <Col key={field.key} span={span} offset={offset}>
                 <Form.Item
                   className={field.className}
                   label={['button', 'render'].indexOf(field.type) === -1 ? label : undefined}

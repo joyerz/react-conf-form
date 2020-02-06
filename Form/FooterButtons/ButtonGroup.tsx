@@ -24,7 +24,7 @@ export default function (props: Props): any {
       } = button
 
       const {
-        type = 'primary',
+        type = 'default',
         className = '',
         cb,
         addon,

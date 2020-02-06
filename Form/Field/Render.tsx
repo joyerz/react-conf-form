@@ -9,7 +9,7 @@ type Props = FieldItemT & {
 const Render: React.FC<Props> = props => {
   const { data } = props
   const { render } = props.props
-  console.log('render', typeof render, render)
+  // console.log('render', typeof render, render)
   return typeof render === 'function' ? render(data) : (render || null)
 }
 

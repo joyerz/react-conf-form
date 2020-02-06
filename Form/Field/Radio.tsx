@@ -4,7 +4,11 @@ import { Radio } from 'antd'
 
 export default function RadioField(props: any) {
   const {
-    value, readOnly, onChange, name,
+    value,
+    readOnly,
+    onChange,
+    name,
+    style = {},
   } = props
   const { options = [] } = props.props
 
@@ -19,10 +23,12 @@ export default function RadioField(props: any) {
   return readOnly ? (
     getItemLabelByValue(options, value)
   ) : (
-    <Radio.Group
-      {...props.props}
-      value={value}
-      onChange={change}
-    />
+    <div style={style}>
+      <Radio.Group
+        {...props.props}
+        value={value}
+        onChange={change}
+      />
+    </div>
   )
 }

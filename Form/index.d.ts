@@ -36,6 +36,7 @@ export interface FieldsConfT {
 
 export interface FieldItemT {
   span?: number
+  offset?: number
   key: string
   type: string
   label?: string | React.ReactNode

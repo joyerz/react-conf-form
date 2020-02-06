@@ -21,7 +21,7 @@ export default class RJForm extends React.Component<RJFormProps, State> {
     extendFields: [],
     fields: [],
     labelDirection: 'horizontal', // 'vertical' | 'horizontal'
-    labelWidth: 120,
+    labelWidth: 80,
   }
 
   mounted = false
@@ -206,7 +206,6 @@ export default class RJForm extends React.Component<RJFormProps, State> {
                 <Row
                   key={key}
                   {...field}
-                  onButtonClick={this.onButtonClick}
                   data={this.data}
                   validation={this.validation}
                   labelDirection={labelDirection}

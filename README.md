@@ -80,6 +80,7 @@ export default [
 | ---------- | ----------------------------------------- | ------------- | ------------------------------------ |
 | key        | string(unique)                            | -             | the key for field & data             |
 | span?      | number(1~24)                              | parent's      | width                                |
+| offset?    | number(1~24)                              | 0             | offset                               |
 | label      | string                                    | -             |                                      |
 | type       | string                                    | -             | input, render, timepicker...         |
 | display?   | boolean                                   | true          | show / hide                          |
