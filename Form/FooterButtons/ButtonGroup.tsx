@@ -26,7 +26,7 @@ export default function (props: Props): any {
       const {
         type = 'default',
         className = '',
-        cb,
+        onClick,
         addon,
         style = {},
         ...rest
@@ -51,7 +51,7 @@ export default function (props: Props): any {
               type={buttonType}
               className={className}
               {...rest}
-              onClick={() => props.onButtonClick(key, cb)}
+              onClick={() => props.onButtonClick(key, onClick)}
             >
               {label}
             </Button>
