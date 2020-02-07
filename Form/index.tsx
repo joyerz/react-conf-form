@@ -5,7 +5,7 @@ import { addFields } from '@Form/Field'
 import FormValidator from './utils/FormValidator'
 import Row from './Row'
 import { RJFormProps, FieldsConfT } from './index.d'
-import { addLabelStyleWidth } from '@Form/utils/common'
+import { addLabelStyleWidth, removeLabelStyleWidth } from '@Form/utils/common'
 import FooterButtons from './FooterButtons'
 
 import './index.scss'
@@ -72,6 +72,8 @@ export default class RJForm extends React.Component<RJFormProps, State> {
     this.dataChanged = false
   })
 
+  id = `FORM_${parseInt((Math.random() * 10000).toString(), 10).toString()}`
+
   constructor(props) {
     super(props)
     // add extendFields into form generating/mapping
@@ -85,6 +87,7 @@ export default class RJForm extends React.Component<RJFormProps, State> {
   }
 
   componentWillUnmount() {
+    removeLabelStyleWidth(this.id)
     this.mounted = false
   }
 
@@ -193,12 +196,11 @@ export default class RJForm extends React.Component<RJFormProps, State> {
     } = this.props
     this.isDataSourceChanged(dataSource)
     this.convertDataFromFields(fields, dataSource || {}) // data to fields
-    const ID = `FORM_${parseInt((Math.random() * 10000).toString(), 10).toString()}`
-    addLabelStyleWidth(labelWidth, labelDirection, ID)
+    addLabelStyleWidth(labelWidth, labelDirection, this.id)
 
     return (
       <Spin spinning={this.props.spinning}>
-        <form onSubmit={this.onSubmit} id={ID}>
+        <form onSubmit={this.onSubmit} id={this.id}>
           {fields.map((field: FieldsConfT, idx: number) => {
             const key = `row_${idx}`
             const display = field.display === undefined ? true : field.display

@@ -6,10 +6,15 @@ export const notEmptyValue = (value: any): boolean => (
 
 export const simpleClone = <T>(data: T): T => JSON.parse(JSON.stringify(data))
 
-export const addLabelStyleWidth = (width: number, labelDirection: 'vertical' | 'horizontal', id: string) => {
-  const attributeName = 'form-label-width'
+export const removeLabelStyleWidth = (id: string) => {
+  const attributeName = `form-label-width-${id}`
   const DOM = document.getElementById(attributeName)
   if (DOM) document.body.removeChild(DOM)
+  return attributeName
+}
+
+export const addLabelStyleWidth = (width: number, labelDirection: 'vertical' | 'horizontal', id: string) => {
+  const attributeName = removeLabelStyleWidth(id)
 
   if (labelDirection === 'horizontal') {
     const STYLE = document.createElement('style')
@@ -18,7 +23,6 @@ export const addLabelStyleWidth = (width: number, labelDirection: 'vertical' | '
     document.body.appendChild(STYLE)
   }
 }
-
 
 /**
  * 根据value数组获取数组对象[{label, value}]的多个label值

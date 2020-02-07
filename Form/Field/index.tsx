@@ -15,9 +15,11 @@ import InputNumber from './InputNumber'
 import Textarea from './Textarea'
 import Radio from './Radio'
 import Checkbox from './Checkbox'
+import Switch from './Switch'
 
 const map = {
   render: Render,
+  switch: Switch,
   input: Input,
   button: Button,
   select: Select,
