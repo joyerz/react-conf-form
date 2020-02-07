@@ -37,8 +37,10 @@ export default function CascaderField(props: any) {
     props.onChange(name, selectedValue)
   }
 
+  const { addon, ...rest } = props.props
+
   if (!readOnly) {
-    return <Cascader {...props.props} onChange={change} value={value} placeholder={placeholder} />
+    return <Cascader {...rest} onChange={change} value={value} placeholder={placeholder} />
   }
 
   return getCascaderLabel(value, options, 0, [])

@@ -20,12 +20,14 @@ export default function RadioField(props: any) {
     }
   }
 
+  const { addon, ...rest } = props.props
+
   return readOnly ? (
     getItemLabelByValue(options, value)
   ) : (
     <div style={style}>
       <Radio.Group
-        {...props.props}
+        {...rest}
         value={value}
         onChange={change}
       />

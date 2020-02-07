@@ -11,7 +11,8 @@ type Props = {
   props: {
     className?: string,
     type: ButtonType,
-    onClick: (data: Object) => any
+    onClick: (data: Object) => any,
+    [name: string]: any,
   }
   [name: string]: any
 }
@@ -24,6 +25,7 @@ export default (props: Props) => {
     type = 'default',
     className = '',
     onClick,
+    addon,
     ...rest
   } = props.props
 

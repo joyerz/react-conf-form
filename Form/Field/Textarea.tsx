@@ -30,13 +30,14 @@ export default class extends React.PureComponent<FieldComponentProps> {
       value, readOnly, props,
     } = this.props
     const autoComplete = props.autoComplete || 'off'
+    const { addon, ...rest } = props
     return readOnly
       ? value
       : (
         <>
           <Input.TextArea
             placeholder="请输入"
-            {...props}
+            {...rest}
             value={value}
             onChange={this.onChange}
             autoComplete={autoComplete}

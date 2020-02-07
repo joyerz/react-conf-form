@@ -41,7 +41,7 @@ export default class extends React.PureComponent<FieldComponentProps> {
 
   render() {
     const { value, readOnly, props } = this.props
-    const { format, ...rest } = props
+    const { format, addon, ...rest } = props
     const FORMAT = format || (rest.showTime ? this.FORMAT_TIME : this.FORMAT)
 
     let timeValue = [null, null]

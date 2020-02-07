@@ -33,6 +33,8 @@ export default function CheckboxField(props: any) {
     }
   }
 
+  const { addon, ...rest } = props.props
+
   return readOnly ? (
     getItemLabelByValue(options, value)
   ) : (
@@ -46,7 +48,7 @@ export default function CheckboxField(props: any) {
         </Checkbox>
       )}
       <Checkbox.Group
-        {...props.props}
+        {...rest}
         value={value}
         onChange={change}
       />

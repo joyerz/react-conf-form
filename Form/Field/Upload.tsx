@@ -39,6 +39,7 @@ type UploadFieldProps = {
     onUploaded?: (...args: any[]) => void,
     getResponseData?: (...args: any[]) => void // 获取返回的数据
     action: string,
+    addon?: any
   }
 }
 
@@ -180,8 +181,9 @@ export default class UploadField extends React.PureComponent<UploadFieldProps, U
     const {
       value = [],
       readOnly,
-      ...rest
+      props,
     } = this.props
+
     const {
       maxFiles = 10,
       blobName = 'blob',
@@ -189,7 +191,7 @@ export default class UploadField extends React.PureComponent<UploadFieldProps, U
       showErrorMessage = true,
       listType = 'picture-card',
       headers = {},
-    } = this.props.props
+    } = props
     // value = value || []
 
 
@@ -210,6 +212,8 @@ export default class UploadField extends React.PureComponent<UploadFieldProps, U
 
       return item
     })
+
+    const { addon, ...rest } = props
 
     // console.log('err', this.state.errorMsg, showErrorMessage)
     return (

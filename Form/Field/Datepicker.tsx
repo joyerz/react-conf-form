@@ -36,12 +36,12 @@ export default class extends React.PureComponent<FieldComponentProps> {
       readOnly,
       props,
     } = this.props
-    const { format, ...rest } = props
+    const { format, addon, ...rest } = props
     const FORMAT = format || (rest.showTime ? this.FORMAT_TIME : this.FORMAT)
     const fieldValue = value ? moment(value) : undefined
 
     return readOnly
-      ? (fieldValue && fieldValue.format(format))
+      ? ((fieldValue && fieldValue.format(format)) || null)
       : (
         <>
           <DatePicker

@@ -20,9 +20,11 @@ export default function (props: Props) {
     }
   }
 
+  const { addon, ...rest } = props.props
+
   return (
     <AutoComplete
-      {...props.props}
+      {...rest}
       onChange={onChange}
     />
   )

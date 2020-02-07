@@ -23,14 +23,15 @@ export default class extends React.PureComponent<FieldComponentProps> {
     const {
       value, readOnly, type, props,
     } = this.props
+    const { addon, ...rest } = props
     const autoComplete = props.autoComplete || 'off'
     return readOnly
-      ? value
+      ? (value || null)
       : (
         <>
           <Input
             placeholder="请输入"
-            {...props}
+            {...rest}
             type={type}
             value={value}
             onChange={this.onChange}

@@ -36,6 +36,7 @@ export default class extends React.PureComponent<FieldComponentProps> {
       showSearch = true,
       optionFilterProp = 'label',
       allowClear = true,
+      addon,
       ...rest
     } = props
 

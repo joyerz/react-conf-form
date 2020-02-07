@@ -32,7 +32,7 @@ export default class extends React.PureComponent<FieldComponentProps> {
 
   render() {
     const { value, readOnly, props } = this.props
-    const { format = this.FORMAT, ...rest } = props
+    const { format = this.FORMAT, addon, ...rest } = props
 
     const timeValue = notEmptyValue(value)
       ? moment(simpleClone(value), format)
