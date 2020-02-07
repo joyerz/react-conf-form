@@ -193,11 +193,12 @@ export default class RJForm extends React.Component<RJFormProps, State> {
     } = this.props
     this.isDataSourceChanged(dataSource)
     this.convertDataFromFields(fields, dataSource || {}) // data to fields
-    addLabelStyleWidth(labelWidth, labelDirection)
+    const ID = `FORM_${parseInt((Math.random() * 10000).toString(), 10).toString()}`
+    addLabelStyleWidth(labelWidth, labelDirection, ID)
 
     return (
       <Spin spinning={this.props.spinning}>
-        <form onSubmit={this.onSubmit}>
+        <form onSubmit={this.onSubmit} id={ID}>
           {fields.map((field: FieldsConfT, idx: number) => {
             const key = `row_${idx}`
             const display = field.display === undefined ? true : field.display
