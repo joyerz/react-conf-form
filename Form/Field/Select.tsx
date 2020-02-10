@@ -40,7 +40,7 @@ export default class extends React.PureComponent<FieldComponentProps> {
         )
       })
       result.push(
-        <OptGroup label={key}>
+        <OptGroup label={key} key={key}>
           {children}
         </OptGroup>,
       )
@@ -73,12 +73,12 @@ export default class extends React.PureComponent<FieldComponentProps> {
             allowClear={allowClear}
             onChange={this.onChange}
           >
-            { Object.prototype.toString.call(items) === '[Object Array]' && items.map(item => (
+            { Array.isArray(items) && items.map(item => (
               <Option key={item.value}>
                 {item.label}
               </Option>
             ))}
-            {Object.prototype.toString.call(items) === '[Object Object]' && this.renderGroup(items)}
+            { !Array.isArray(items) && this.renderGroup(items)}
           </Select>
         </>
       )
