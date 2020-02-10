@@ -6,7 +6,7 @@ import { Select } from 'antd'
 import { notEmptyValue, getItemLabelByValue } from '@Form/utils/common'
 import { FieldComponentProps } from '@Form/index.d'
 
-const { Option } = Select
+const { Option, OptGroup } = Select
 export default class extends React.PureComponent<FieldComponentProps> {
   onChange = (e: any) => {
     const target = e && e.target
@@ -26,6 +26,26 @@ export default class extends React.PureComponent<FieldComponentProps> {
     }
 
     this.props.onChange(name, value)
+  }
+
+  renderGroup = (items: any) => {
+    const result = []
+    Object.keys(items).forEach(key => {
+      const children = []
+      items[key].forEach(item => {
+        children.push(
+          <Option key={item.value}>
+            {item.label}
+          </Option>,
+        )
+      })
+      result.push(
+        <OptGroup label={key}>
+          {children}
+        </OptGroup>,
+      )
+    })
+    return result
   }
 
   render() {
@@ -53,11 +73,12 @@ export default class extends React.PureComponent<FieldComponentProps> {
             allowClear={allowClear}
             onChange={this.onChange}
           >
-            {items.map(item => (
+            { Object.prototype.toString.call(items) === '[Object Array]' && items.map(item => (
               <Option key={item.value}>
                 {item.label}
               </Option>
             ))}
+            {Object.prototype.toString.call(items) === '[Object Object]' && this.renderGroup(items)}
           </Select>
         </>
       )
