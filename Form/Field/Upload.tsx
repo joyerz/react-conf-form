@@ -40,6 +40,10 @@ type UploadFieldProps = {
     getResponseData?: (...args: any[]) => void // 获取返回的数据
     action: string,
     addon?: any
+    responseHandler: {
+      url: (response: any) => string
+      name: (response: any) => string
+    }
   }
 }
 
@@ -67,15 +71,23 @@ export default class UploadField extends React.PureComponent<UploadFieldProps, U
 
   onChange = (info: any): void => {
     // console.log('!!!!!!进入 onChange ')
-    const { onChange, onUploaded } = this.props.props
+    const { onChange, onUploaded, responseHandler } = this.props.props
     let fileList = [...info.fileList]
 
     fileList.forEach((file, idx) => {
       if (file.response) {
-        fileList[idx] = {
-          ...fileList[idx],
-          url: file.response.headers.location,
-          name: file.response.filename,
+        if (responseHandler) {
+          fileList[idx] = {
+            ...fileList[idx],
+            url: responseHandler.url(file.response),
+            name: responseHandler.name(file.response),
+          }
+        } else {
+          fileList[idx] = {
+            ...fileList[idx],
+            url: file.response.headers.location,
+            name: file.response.filename,
+          }
         }
       }
       return file
