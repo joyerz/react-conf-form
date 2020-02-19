@@ -45,15 +45,35 @@ export const getItemLabelsByValue = (
  * 根据value获取数组对象[{label, value}]的label值
  * @param items
  * @param value
- * @return {string | null}
+ * @param mode
+ * @return {any}
  */
 export const getItemLabelByValue = (
   items: Array<any>,
-  value: string | number,
+  value: any,
+  mode?: any,
 ): string => {
-  const found = items.filter(item => item.value === value)
-  if (found.length > 0) {
-    return found[0].label
+  let newItems = items
+  if (!Array.isArray(items)) {
+    newItems = []
+    Object.keys(items).forEach(key => {
+      const group: any = items[key]
+      if (Array.isArray(group)) {
+        newItems = [...newItems, ...group]
+      }
+    })
+  }
+
+  if (!mode) {
+    const found = newItems.filter(item => item.value === value)
+    if (found.length > 0) {
+      return found[0].label
+    }
+  } else if (value && Array.isArray(value)) {
+    const found = newItems.filter(item => value.indexOf(item.value) !== -1)
+    if (found.length > 0) {
+      return found.map(foundItem => foundItem.label).join(', ')
+    }
   }
   return ''
 }

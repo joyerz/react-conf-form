@@ -1,8 +1,6 @@
 import * as React from 'react'
 import * as moment from 'moment'
 import { DatePicker } from 'antd'
-// import Datepicker from 'antd/es/date-picker'
-// import 'antd/es/date-picker/style'
 
 import { notEmptyValue, getTargetValue } from '@Form/utils/common'
 import { FieldComponentProps } from '@Form/index.d'

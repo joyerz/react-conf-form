@@ -60,8 +60,9 @@ export default class extends React.PureComponent<FieldComponentProps> {
       ...rest
     } = props
 
+    const { mode } = rest
     return readOnly
-      ? getItemLabelByValue(items, value)
+      ? getItemLabelByValue(items, value, mode)
       : (
         <>
           <Select
