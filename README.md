@@ -1,10 +1,9 @@
 # React Conf Form
 
-> 集成了[antd](https://ant.design/index-cn)的配置化表单(思路来源于[jsonschema form]( https://github.com/rjsf-team/react-jsonschema-form),)
+> 集成了[antd](https://ant.design/index-cn)的配置化表单(思路来源于[jsonschema form]( https://github.com/rjsf-team/react-jsonschema-form))
+> 不同的是，简化了配置的书写以及数据的提取
 
-> 继承了控件Input, Button, Select, Upload等常用控件
-
-> 可扩展控件
+> 继承了控件Input, Button, Select, Upload等常用控件，可自定义扩展控件
 
 > 自带校验规则，可扩展校验规则
 
