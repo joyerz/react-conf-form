@@ -55,6 +55,8 @@ export default class FormDemo extends React.Component {
 | extendValidators? | Array<ExtendValidator>     | -             | 扩展校验规则              |
 
 ```javascript
+const FIELDS = [...]
+
 <Form
   spinning={false}
   validateOnChange={true}
@@ -86,7 +88,7 @@ export default class FormDemo extends React.Component {
 | align?     | center \| left \| right | -             | 适用于按钮行(FormButtons), 按钮的对齐方式  |
 
 ```javascript
-export default [
+const FIELDS = [
   {
     span: 8,
     gutter: 16,
