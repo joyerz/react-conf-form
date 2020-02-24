@@ -40,19 +40,19 @@ export default class FormDemo extends React.Component {
 
 ### 参数Props
 
-| key              | Type                       | default value | description             |
-| ---------------- | -------------------------- | ------------- | ----------------------- |
-| spinning         | boolean                    | false         |                         |
-| validateOnChange | boolean                    | true          |                         |
-| labelDirection   | 'vertical' \| 'horizontal' | vertical      |                         |
-| labelWidth       | number                     | 120           |                         |
-| fields           | Array<...>                 | -             | fields                  |
-| dataSource       | Object                     | -             | data mapping the fields |
-| onSubmit         | (data) => void             | -             |                         |
-| onChange         | (key, value, data) => void | -             | on any field change     |
-| onReset          | () => void                 | -             |                         |
-| extendFields     | Array<ExtendField>         | -             |                         |
-| extendValidators | Array<ExtendValidator>     | -             |                         |
+| key               | Type                       | default value | description             |
+| ----------------- | -------------------------- | ------------- | ----------------------- |
+| spinning?         | boolean                    | false         | 是否显示加载状态          |
+| validateOnChange? | boolean                    | true          | 是否在onChange自动进行校验 |
+| labelDirection?   | 'vertical' \| 'horizontal' | vertical      | label位置                |
+| labelWidth?       | number                     | 120           | label的宽度              |
+| fields            | Array<...>                 | -             | fields                  |
+| dataSource?       | Object                     | -             | 初始值对象（对应fields的key相应的属性值) |
+| onSubmit?         | (data) => void             | -             | 提交(data为最新的值)      |
+| onChange?         | (key, value, data) => void | -             | 任意表单项修改触发              |
+| onReset?          | () => void                 | -             | 重置触发                 |
+| extendFields?     | Array<ExtendField>         | -             | 扩展表单控件              |
+| extendValidators? | Array<ExtendValidator>     | -             | 扩展校验规则              |
 
 
 
