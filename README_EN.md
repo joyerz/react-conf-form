@@ -1,21 +1,15 @@
-# React Conf Form
+# Configurable Form for react
 
-> 集成了[antd](https://ant.design/index-cn)的可配置表单，封装了默认的校验规则、数据自动提取
+> make form by configurable file, validate automatically and init/pick up values by only one method. Extensible for fields, validators
 
-
-
-## 安装install
-
+## install
 ```
 yarn add react-conf-form 
 or 
 npm install react-conf-form
 ```
 
-
-
-## 使用usage
-
+## use
 ```javascript
 import Form from 'react-conf-form'
 import 'react-conf-form/dist/index.css' // import once
@@ -34,9 +28,7 @@ render() {
 }
 ```
 
-
-
-### 参数Props
+### Props
 
 | key              | Type                       | default value | description             |
 | ---------------- | -------------------------- | ------------- | ----------------------- |
@@ -54,14 +46,14 @@ render() {
 
 
 
-## 配置config
+## config
 
 ###Row config
 
 | key        | type                    | default value | description              |
 | ---------- | ----------------------- | ------------- | ------------------------ |
 | span?      | number                  | 8             | total 24, 8 for each col |
-| gutter?    | number                  | 16(px)        | space between each col   |
+| gutter?    | number                  | 16(px)        | space between ecah col   |
 | type?      | 'FormButtons' \| string | -             |                          |
 | style?     | object                  | -             |                          |
 | className? | string                  | -             | css class                |
