@@ -45,7 +45,7 @@ export default class FormDemo extends React.Component {
 
 
 
-### 参数 Props
+### 参数 props
 
 | 参数              | 类型                        | 默认值         | 描述             |
 | ----------------- | -------------------------- | ------------- | ----------------------- |
@@ -79,7 +79,7 @@ render() {
       labelDirection="horizontal"
       labelWidth={120}
       fields={FIELDS}
-      dataSource={dataSource}
+      dataSource={{}}
       onSubmit={this.onSubmit}
       onChange={this.onChange}
       onReset={this.onReset}
@@ -90,9 +90,9 @@ render() {
 }
 ```
 
-## 配置 config
+## 配置
 
-### 行配置 Row
+### 行 Row
 
 | 参数        | 类型                    | 默认值         | 描述              |
 | ---------- | ----------------------- | ------------- | ------------------------ |
@@ -119,25 +119,25 @@ const FIELDS = [
 
 
 
-### 列配置 (fields: [field, ...])
+### 列 (fields: [field, ...])
 
-| key        | type                                      | default value | description                          |
+| 参数        | 类型                                      | 默认值         | 描述                          |
 | ---------- | ----------------------------------------- | ------------- | ------------------------------------ |
-| key        | string(unique)                            | -             | the key for field & data             |
-| span?      | number(1~24)                              | parent's      | width                                |
-| offset?    | number(1~24)                              | 0             | offset                               |
+| key        | string(唯一)                               | -             | field & data对应的key                |
+| span?      | number(1~24)                              | 继承row        | 栅格宽度                              |
+| offset?    | number(1~24)                              | 0             | 偏移栅格                              |
 | label      | string                                    | -             |                                      |
 | type       | string                                    | -             | input, render, timepicker...         |
-| display?   | boolean                                   | true          | show / hide                          |
-| readOnly?  | boolean                                   | false         | for interative field component       |
-| render?    | string \| Node \| data => any             |               | when **type** is "**render**"        |
-| addon?     | string \| Node \| data => any             | -             | addon render                         |
+| display?   | boolean                                   | true          | 是否展示                              |
+| readOnly?  | boolean                                   | false         | 是否只读                               |
 | className? | string                                    | -             | css class                            |
 | **props**  | **object**                                |               | **for interative field component**   |
 |            | className?                                | -             | css class                            |
 |            | rules: Array<string>                      | []            | rules for validation                 |
 |            | onChange?: (name, value) => any           | -             |                                      |
-|            | beforeChange?: (name, value) => new value | -             | will be called before onChange event |
-|            | onClick?: (data) => any                   |               | when **type** is "**button**"        |
+|            | beforeChange?: (name, value) => new value | -             | onChange触发前调用，用于覆盖处理onChange的值 |
+|            | onClick?: (data) => any                   |               | 当**type**="**button**"，点击回调      |
+|            | render?: string \| Node \| (data) => any  |               | 当**type**="**render**"，render方法/对象   |
+|            | addon?: string \| Node \| (data) => any   |               | 额外的render                          |
 |            | ...others                                 |               |                                      |
 
