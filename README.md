@@ -17,20 +17,22 @@ npm install react-conf-form
 ## 使用usage
 
 ```javascript
+import * as React from 'react'
 import Form from 'react-conf-form'
 import 'react-conf-form/dist/index.css' // import once
 
-...
-onSubmit = (data) => { console.log(data) }
-
-render() {
-  return (
-    <Form
-      fields={FIELDS_CONF}
-      dataSource={DATA_SOURCE}
-      onSubmit={this.onSubmit}
-    />
-  )
+export default class FormDemo extends React.Component {
+    onSubmit = (data) => { console.log(data) }
+    
+    render() {
+      return (
+        <Form
+          fields={FIELDS_CONF}
+          dataSource={DATA_SOURCE}
+          onSubmit={this.onSubmit}
+        />
+      )
+    }
 }
 ```
 
