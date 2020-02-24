@@ -85,7 +85,7 @@ render() {
 
 ## 配置 config
 
-### 行配置 Row config
+### 行配置 Row
 
 | 参数        | 类型                    | 默认值         | 描述              |
 | ---------- | ----------------------- | ------------- | ------------------------ |
@@ -100,18 +100,19 @@ render() {
 
 ```javascript
 const FIELDS = [
-  {
+  { // row 
     span: 8,
     gutter: 16,
     display: true,
-    fields: [...],
+    type: 'fields',
+    fields: [...], // field's cols
   }
 ]
 ```
 
 
 
-### 列配置 Col config(fields: [...])
+### 列配置 (fields: [field, ...])
 
 | key        | type                                      | default value | description                          |
 | ---------- | ----------------------------------------- | ------------- | ------------------------------------ |
