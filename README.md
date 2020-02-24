@@ -131,7 +131,7 @@ const FIELDS = [
 | display?   | boolean                                   | true          | 是否展示                              |
 | readOnly?  | boolean                                   | false         | 是否只读                               |
 | className? | string                                    | -             | css class                            |
-| **props**  | **object**                                |               | **控件内部的参数**                     |
+| **props**  |                                           |               | **控件内部的参数**                     |
 |            | className?                                | -             | css class                            |
 |            | rules: Array<string>                      | []            | rules for validation                 |
 |            | onChange?: (name, value) => any           | -             |                                      |
