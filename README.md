@@ -38,13 +38,13 @@ export default class FormDemo extends React.Component {
 
 
 
-### 参数Props
+### 参数 Props
 
-| key               | Type                       | default value | description             |
+| 参数              | 类型                        | 默认值         | 描述             |
 | ----------------- | -------------------------- | ------------- | ----------------------- |
 | spinning?         | boolean                    | false         | 是否显示加载状态          |
 | validateOnChange? | boolean                    | true          | 是否在onChange自动进行校验 |
-| labelDirection?   | 'vertical' \| 'horizontal' | vertical      | label位置                |
+| labelDirection?   | 'vertical' \| 'horizontal' | horizontal    | label位置                |
 | labelWidth?       | number                     | 120           | label的宽度              |
 | fields            | Array<...>                 | -             | fields                  |
 | dataSource?       | Object                     | -             | 初始值对象（对应fields的key相应的属性值) |
@@ -54,13 +54,27 @@ export default class FormDemo extends React.Component {
 | extendFields?     | Array<ExtendField>         | -             | 扩展表单控件              |
 | extendValidators? | Array<ExtendValidator>     | -             | 扩展校验规则              |
 
+```javascript
+<Form
+  spinning={false}
+  validateOnChange={true}
+  labelDirection="horizontal"
+  labelWidth={120}
+  fields={FIELDS}
+  dataSource={dataSource}
+  onSubmit={this.onSubmit}
+  onChange={this.onChange}
+  onReset={this.onReset}
+  extendFields={[]}
+  extendValidators={[]}
+/>
+```
 
+## 配置 config
 
-## 配置config
+### 行配置 Row config
 
-###Row config
-
-| key        | type                    | default value | description              |
+| 参数        | 类型                    | 默认值         | 描述              |
 | ---------- | ----------------------- | ------------- | ------------------------ |
 | span?      | number                  | 8             | total 24, 8 for each col |
 | gutter?    | number                  | 16(px)        | space between each col   |
@@ -84,7 +98,7 @@ export default [
 
 
 
-### Col config(fields: [...])
+### 列配置 Col config(fields: [...])
 
 | key        | type                                      | default value | description                          |
 | ---------- | ----------------------------------------- | ------------- | ------------------------------------ |
