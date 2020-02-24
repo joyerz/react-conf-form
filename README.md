@@ -91,7 +91,7 @@ render() {
 | ---------- | ----------------------- | ------------- | ------------------------ |
 | span?      | number                  | 8             | 行内单元格所占珊格，最大24   |
 | gutter?    | number                  | 16(px)        | 间隔                      |
-| type?      | 'FormButtons' \| string | -             | 按钮行 | 常规控件行         |
+| type?      | 'FormButtons' \| string | -             | 按钮行 / 常规控件行         |
 | style?     | object                  | -             | 自定义样式                 |
 | className? | string                  | -             | 自定义样式class           |
 | display?   | string                  | true          | 是否显示                  |
