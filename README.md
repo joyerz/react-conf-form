@@ -3,8 +3,11 @@
 > 集成了[antd](https://ant.design/index-cn)的可配置表单
 
 > 继承了控件Input, Button, Select, Upload等常用控件
+
 > 可扩展控件
+
 > 自带校验规则，可扩展校验规则
+
 > 表单数据自动提取
 
 
