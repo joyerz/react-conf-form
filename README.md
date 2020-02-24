@@ -76,14 +76,14 @@ export default class FormDemo extends React.Component {
 
 | 参数        | 类型                    | 默认值         | 描述              |
 | ---------- | ----------------------- | ------------- | ------------------------ |
-| span?      | number                  | 8             | total 24, 8 for each col |
-| gutter?    | number                  | 16(px)        | space between each col   |
-| type?      | 'FormButtons' \| string | -             |                          |
-| style?     | object                  | -             |                          |
-| className? | string                  | -             | css class                |
-| display?   | string                  | true          | show / hide              |
-| fields     | array                   |               | see col config below     |
-| align      | center \| left \| right | -             | for 'FormButtons' type   |
+| span?      | number                  | 8             | 行内单元格所占珊格，最大24   |
+| gutter?    | number                  | 16(px)        | 间隔                      |
+| type?      | 'FormButtons' \| string | -             | 按钮行 | 常规控件行         |
+| style?     | object                  | -             | 自定义样式                 |
+| className? | string                  | -             | 自定义样式class           |
+| display?   | string                  | true          | 是否显示                  |
+| fields     | array                   |               | 单元格配置                |
+| align?     | center \| left \| right | -             | 适用于按钮行(FormButtons), 按钮的对齐方式  |
 
 ```javascript
 export default [
@@ -91,7 +91,7 @@ export default [
     span: 8,
     gutter: 16,
     display: true,
-    fields: [...]
+    fields: [...],
   }
 ]
 ```
