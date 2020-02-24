@@ -1,6 +1,6 @@
 # React Conf Form
 
-> 集成了[antd](https://ant.design/index-cn)的可配置表单
+> 集成了[antd](https://ant.design/index-cn)的配置化表单(思路来源于[jsonschema form]( https://github.com/rjsf-team/react-jsonschema-form),)
 
 > 继承了控件Input, Button, Select, Upload等常用控件
 
