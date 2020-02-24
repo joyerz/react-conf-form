@@ -55,21 +55,32 @@ export default class FormDemo extends React.Component {
 | extendValidators? | Array<ExtendValidator>     | -             | 扩展校验规则              |
 
 ```javascript
-const FIELDS = [...]
 
-<Form
-  spinning={false}
-  validateOnChange={true}
-  labelDirection="horizontal"
-  labelWidth={120}
-  fields={FIELDS}
-  dataSource={dataSource}
-  onSubmit={this.onSubmit}
-  onChange={this.onChange}
-  onReset={this.onReset}
-  extendFields={[]}
-  extendValidators={[]}
-/>
+onSubmit = (data) => console.log(data)
+
+onChange = (name, value, data) => console.log(name, value, data)
+
+onReset = () => {}
+
+render() {
+  const FIELDS = [...]
+
+  return (
+    <Form
+      spinning={false}
+      validateOnChange={true}
+      labelDirection="horizontal"
+      labelWidth={120}
+      fields={FIELDS}
+      dataSource={dataSource}
+      onSubmit={this.onSubmit}
+      onChange={this.onChange}
+      onReset={this.onReset}
+      extendFields={[]}
+      extendValidators={[]}
+    />
+  )
+}
 ```
 
 ## 配置 config
