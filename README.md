@@ -134,7 +134,7 @@ const FIELDS = [
 | **props**  |                                           |               | **控件内部的参数**                     |
 |            | className?                                | -             | css class                            |
 |            | rules: Array<string>                      | []            | rules for validation                 |
-|            | onChange?: (name, value) => any           | -             |                                      |
+|            | onChange?: (name, value) => void           | -             |                                      |
 |            | beforeChange?: (name, value) => new value | -             | onChange触发前调用，用于覆盖处理onChange的值 |
 |            | onClick?: (data) => any                   |               | 当**type**="**button**"，点击回调      |
 |            | render?: string \| Node \| (data) => any  |               | 当**type**="**render**"，render方法/对象   |
