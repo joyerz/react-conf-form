@@ -52,7 +52,7 @@ export default class extends React.PureComponent<FieldComponentProps> {
     }
 
     return readOnly
-      ? `${moment(timeValue[0]).format(format)} ~ ${moment(timeValue[1]).format(format)}`
+      ? `${moment(timeValue[0]).format(FORMAT)} ~ ${moment(timeValue[1]).format(FORMAT)}`
       : (
         <>
           <DatePicker.RangePicker
