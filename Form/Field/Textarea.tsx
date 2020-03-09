@@ -32,7 +32,7 @@ export default class extends React.PureComponent<FieldComponentProps> {
     const autoComplete = props.autoComplete || 'off'
     const { addon, ...rest } = props
     return readOnly
-      ? value
+      ? (value || null)
       : (
         <>
           <Input.TextArea
