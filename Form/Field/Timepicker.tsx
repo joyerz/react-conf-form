@@ -30,6 +30,11 @@ export default class extends React.PureComponent<FieldComponentProps> {
     this.props.onChange(name, value)
   }
 
+  staticTime = (value, FORMAT) => {
+    if (!value) return moment(value).format(FORMAT)
+    return ''
+  }
+
   render() {
     const { value, readOnly, props } = this.props
     const { format = this.FORMAT, addon, ...rest } = props
@@ -39,7 +44,7 @@ export default class extends React.PureComponent<FieldComponentProps> {
       : undefined
 
     return readOnly
-      ? moment(value).format(format)
+      ? this.staticTime(value, format)
       : (
         <>
           <TimePicker
