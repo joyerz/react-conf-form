@@ -44,6 +44,13 @@ export default class extends React.PureComponent<FieldComponentProps> {
     return ''
   }
 
+  showTime = (timeValue: any[], FORMAT: string) => {
+    if (timeValue[0] && timeValue[1]) {
+      return `${this.staticTime(timeValue[0], FORMAT)} ~ ${this.staticTime(timeValue[1], FORMAT)}`
+    }
+    return null
+  }
+
   render() {
     const { value, readOnly, props } = this.props
     const { format, addon, ...rest } = props
@@ -57,7 +64,7 @@ export default class extends React.PureComponent<FieldComponentProps> {
     }
 
     return readOnly
-      ? `${this.staticTime(timeValue[0], FORMAT)} ~ ${this.staticTime(timeValue[1], FORMAT)}`
+      ? this.showTime(timeValue, FORMAT)
       : (
         <>
           <DatePicker.RangePicker
