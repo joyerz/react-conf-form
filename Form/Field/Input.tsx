@@ -36,17 +36,19 @@ export default class extends React.PureComponent<FieldComponentProps> {
     const {
       addon,
       suffix,
-      preffix,
+      prefix,
       ...rest
     } = props
     const autoComplete = props.autoComplete || 'off'
     return readOnly
-      ? this.staticValue(value, suffix, preffix)
+      ? this.staticValue(value, suffix, prefix)
       : (
         <>
           <Input
             placeholder="请输入"
             {...rest}
+            suffix={suffix}
+            prefix={prefix}
             type={type}
             value={value}
             onChange={this.onChange}

@@ -16,9 +16,13 @@ export default class extends React.Component<FieldComponentProps> {
     const {
       value,
     } = this.props
+
+    const { onClick, ...rest } = this.props.props
+
     return (
       <>
         <Switch
+          {...rest}
           checked={value}
           onChange={this.onChange}
         />
