@@ -34,7 +34,7 @@ export default class extends React.PureComponent<FieldComponentProps> {
       const children = []
       items[key].forEach(item => {
         children.push(
-          <Option key={item.value} value={item.value}>
+          <Option key={item.value} title={item.label}>
             {item.label}
           </Option>,
         )
@@ -54,7 +54,7 @@ export default class extends React.PureComponent<FieldComponentProps> {
       items = [],
       placeholder = '请选择',
       showSearch = true,
-      optionFilterProp = 'label',
+      optionFilterProp = 'title',
       allowClear = true,
       addon,
       ...rest
@@ -74,8 +74,12 @@ export default class extends React.PureComponent<FieldComponentProps> {
             allowClear={allowClear}
             onChange={this.onChange}
           >
-            { Array.isArray(items) && items.map(item => (
-              <Option key={item.value} value={item.value}>
+            { Array.isArray(items) && items.map((item: any) => (
+              <Option
+                key={item.value}
+                title={item.label}
+                disabled={item.value === undefined}
+              >
                 {item.label}
               </Option>
             ))}
