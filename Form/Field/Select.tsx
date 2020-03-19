@@ -34,7 +34,7 @@ export default class extends React.PureComponent<FieldComponentProps> {
       const children = []
       items[key].forEach(item => {
         children.push(
-          <Option key={item.value}>
+          <Option key={item.value} value={item.value}>
             {item.label}
           </Option>,
         )
@@ -75,7 +75,7 @@ export default class extends React.PureComponent<FieldComponentProps> {
             onChange={this.onChange}
           >
             { Array.isArray(items) && items.map(item => (
-              <Option key={item.value}>
+              <Option key={item.value} value={item.value}>
                 {item.label}
               </Option>
             ))}
