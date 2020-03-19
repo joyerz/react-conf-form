@@ -69,7 +69,7 @@ export default class extends React.PureComponent<FieldComponentProps> {
             {...rest}
             placeholder={placeholder}
             value={value}
-            optionFilterProp={optionFilterProp}
+            optionFilterProp={optionFilterProp === 'label' ? 'title' : optionFilterProp}
             showSearch={showSearch}
             allowClear={allowClear}
             onChange={this.onChange}
