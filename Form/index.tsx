@@ -78,6 +78,9 @@ export default class RJForm extends React.Component<RJFormProps, State> {
     super(props)
     // add extendFields into form generating/mapping
     addFields(this.props.extendFields)
+    if (props.id) {
+      this.id = `FORM_${props.id}`
+    }
   }
 
   componentDidMount() {

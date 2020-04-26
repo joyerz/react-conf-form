@@ -179,9 +179,9 @@ module.exports = {
     'react-router-dom': 'react-router-dom',
     moment: 'moment',
     classnames: 'classnames',
-    axios: 'axios',
     '@types/axios': '@types/axios',
     'memoize-one': 'memoize-one',
     memoize: 'memoize-one',
+    axios: 'axios',
   },
 }

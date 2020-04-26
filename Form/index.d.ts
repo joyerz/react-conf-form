@@ -16,6 +16,7 @@ export interface RJFormProps {
   extendFields?: Array<ExtendField>
   labelDirection?: 'vertical' | 'horizontal'
   labelWidth?: number
+  id?: string
 }
 
 /* fields Conf */
