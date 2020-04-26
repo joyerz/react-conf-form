@@ -1,11 +1,11 @@
 {
   "name": "react-conf-form",
-  "version": "1.0.45",
+  "version": "1.0.49",
   "main": "index.js",
-  "typings": "Form/index.d.ts",
+  "typings": "./index.d.ts",
   "files": [
     "dist",
-    "Form/index.d.ts",
+    "./index.d.ts",
     "index.dev.js",
     "index.prod.js"
   ],

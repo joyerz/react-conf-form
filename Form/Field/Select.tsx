@@ -62,7 +62,7 @@ export default class extends React.PureComponent<FieldComponentProps> {
 
     const { mode } = rest
     return readOnly
-      ? getItemLabelByValue(items, value, mode)
+      ? <span style={{ }}>{getItemLabelByValue(items, value, mode)}</span>
       : (
         <>
           <Select

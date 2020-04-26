@@ -22,9 +22,10 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, '../dist'),
-    library: 'react-json-form',
-    libraryTarget: 'commonjs2',
-    libraryExport: 'default',
+    // library: 'react-json-form',
+    // libraryTarget: 'commonjs2',
+    libraryTarget: 'umd',
+    // libraryExport: 'default',
     filename: 'index.dev.js',
     crossOriginLoading: 'anonymous',
   },
@@ -143,5 +144,6 @@ module.exports = {
     '@types/axios': '@types/axios',
     'memoize-one': 'memoize-one',
     memoize: 'memoize-one',
+    axios: 'axios',
   },
 }

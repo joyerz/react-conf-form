@@ -25,6 +25,8 @@ export default class extends React.PureComponent<FieldComponentProps> {
       } else {
         value = [moment(value[0]).valueOf(), moment(value[1]).valueOf()]
       }
+    } else {
+      value = null
     }
 
     const { name } = this.props
@@ -35,6 +37,8 @@ export default class extends React.PureComponent<FieldComponentProps> {
     if (onChange) {
       onChange(name, value)
     }
+
+    console.log('name', name, value)
 
     this.props.onChange(name, value)
   }
