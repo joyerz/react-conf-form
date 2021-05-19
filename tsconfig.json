@@ -3,21 +3,22 @@
     "outDir": "./dist/",
     "sourceMap": true,
     "noImplicitAny": false,
+    "allowSyntheticDefaultImports": true,
+    "downlevelIteration": true,
+    "esModuleInterop": true,
     "module": "commonjs",
     "target": "es6",
     "jsx": "react",
-    "allowJs": false,                       /* Allow javascript files to be compiled. */
-    "typeRoots": ["./node_modules/@types", "./src/@types"],
-    "types" : ["react", "react-dom", "react-css-modules"],
-    "baseUrl": "./",
-    "paths": {
-      "@utils/*": ["src/utils/*"],
-      "@pages/*": ["src/pages/*"],
-      "@conf/*": ["src/conf/*"],
-      "@com/*": ["src/components/*"],
-      "@src/*": ["src/*"],
-      "@assets/*": ["src/assets/*"],
-      "@Form/*": ["Form/*"]
-    }
+    "allowJs": false, /* Allow javascript files to be compiled. */
+    "typeRoots": [
+      "./node_modules/@types",
+      "./src/@types",
+      "./src/Form/@types"
+    ],
+    "types": [
+      "react",
+      "react-dom",
+      "node"
+    ],
   }
 }

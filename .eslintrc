@@ -13,38 +13,102 @@
       "experimentalObjectRestSpread": true,
       "legacyDecorators": true,
       "jsx": true
-    }
+    },
+    "project": "./tsconfig.json",
+    "createDefaultProgram": true,
+    "tsconfigRootDir": "./"
   },
   "settings": {
     "import/resolver": {
       "alias": {
         "map": [
-          ["@src", "./src"],
-          ["@com", "./src/components"],
-          ["@utils", "./src/utils"],
-          ["@assets", "./src/assets"],
-          ["@conf", "./src/conf"],
-          ["@pages", "./src/pages"]
+          [
+            "@",
+            "./src"
+          ],
+          [
+            "@assets",
+            "./src/assets"
+          ],
+          [
+            "@components",
+            "./src/components"
+          ],
+          [
+            "@pages",
+            "./src/pages"
+          ]
         ],
-        "extensions": [".js", ".jsx", ".json", ".ts", ".tsx"]
+        "extensions": [
+          ".js",
+          ".jsx",
+          ".json",
+          ".ts",
+          ".tsx",
+          ".d.ts"
+        ]
       }
     }
   },
-  "plugins": ["react", "@typescript-eslint"],
-  "extends": ["airbnb-typescript", "eslint:recommended"//    "eslint-config-alloy/typescript"
+  "plugins": [
+    "react",
+    "@typescript-eslint"
+  ],
+  "extends": [
+    "airbnb-typescript",
+    "eslint:recommended", //    "eslint-config-alloy/typescript"
+    "plugin:react-hooks/recommended"
   ],
   "rules": {
+    "react/jsx-props-no-spreading": [
+      0
+    ],
+    "jsx-a11y/media-has-caption": [
+      0,
+      {
+        "audio": [
+          "Audio"
+        ],
+        "video": [
+          "Video"
+        ],
+        "track": [
+          "Track"
+        ],
+      }
+    ],
+    "react/no-unknown-property": [
+      0
+    ],
     "react/prop-types": 0,
-    "react/display-name": [0],
+    "react/display-name": [
+      0
+    ],
     "react/jsx-uses-react": "error",
     "react/jsx-uses-vars": "error",
     "no-console": "off",
-    "indent": ["error", 2],
+    "indent": [
+      "error",
+      2
+    ],
     "no-unused-vars": "off",
-    "linebreak-style": [0],
-    "quotes": ["error", "single"],
-    "no-multiple-empty-lines": [2, { "max": 2 }],
-    "semi": ["error", "never"], //["error", "always"]
+    "linebreak-style": [
+      0
+    ],
+    "quotes": [
+      "error",
+      "single"
+    ],
+    "no-multiple-empty-lines": [
+      2,
+      {
+        "max": 1
+      }
+    ],
+    "semi": [
+      "error",
+      "always"
+    ], //["error", "always"]
     "import/no-cycle": "off",
     "no-undef": 0,
     "import/no-extraneous-dependencies": 0,
@@ -54,22 +118,57 @@
     "import/no-named-as-default": 0,
     "import/no-named-as-default-member": 0,
     "import/order": 0,
-//    "func-names": ["error", "always"],
+    //    "func-names": ["error", "always"],
     "import/no-self-import": 0,
     "no-useless-constructor": "off",
-    "@typescript-eslint/indent": ["error", 2],
-    "@typescript-eslint/semi": ["error", "never"],
+    "@typescript-eslint/indent": [
+      "error",
+      2
+    ],
+    "@typescript-eslint/semi": [
+      "error",
+      "always"
+    ],
     "@typescript-eslint/no-unused-vars": "error",
     "@typescript-eslint/no-useless-constructor": "error",
+    "@typescript-eslint/camelcase": 0,
     "brace-style": "off",
-    "@typescript-eslint/brace-style": [0],
+    "@typescript-eslint/brace-style": [
+      0
+    ],
     "no-return-await": "off",
-    "prefer-destructuring": ["off"],
-    "react/destructuring-assignment": ["off"],
+    "prefer-destructuring": [
+      "off"
+    ],
+    "react/destructuring-assignment": [
+      "off"
+    ],
     "consistent-return": "off",
+    "implicit-arrow-linebreak": "off", // 箭头符号函数返回换行
     "func-names": 0,
-    "object-shorthand": ["error", "properties"],
+    "no-plusplus": 0,
+    "no-restricted-syntax": 0, // for...in loops
+    "object-shorthand": [
+      "error",
+      "properties"
+    ],
     "jsx-a11y/no-static-element-interactions": 0,
-    "jsx-a11y/click-events-have-key-events": 0
+    "jsx-a11y/click-events-have-key-events": 0,
+    "jsx-a11y/anchor-is-valid": 0,
+    "jsx-a11y/interactive-supports-focus": 0,
+    "react/jsx-boolean-value": 0,
+    "react/no-unused-state": 0,
+    "react/prefer-stateless-function": 0,
+    "spaced-comment": 0,
+    "react/jsx-filename-extension": [
+      1,
+      {
+        "extensions": [
+          ".js",
+          ".jsx",
+          "tsx"
+        ]
+      }
+    ]
   }
 }
