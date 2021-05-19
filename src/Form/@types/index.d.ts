@@ -1,17 +1,15 @@
+// declare enum Type {
+//   input = 'input',
+//   select = 'select',
+//   dropdown = 'dropdown',
+//   textarea = 'textarea',
+//   password = 'password',
+//   number = 'number'
+// }
 
-// tslint:disable-next-line:export-just-namespace
-// export = RJForm;
-// export as namespace RJForm;
+declare type Type = 'input' | 'select' | 'dropdown' | 'textarea' | 'password' | 'number';
 
 declare namespace RJForm {
-  enum Type {
-    input = 'input',
-    select = 'select',
-    dropdown = 'dropdown',
-    textarea = 'textarea',
-    password = 'password',
-    number = 'number'
-  }
 
   interface FormProps {
     gutter?: number;
@@ -30,7 +28,7 @@ declare namespace RJForm {
   interface ItemSchema {
     span?: number;
     label?: string;
-    key?: string;
+    name?: string;
     type: Type;
     fieldProps: FieldProps;
   }
@@ -70,4 +68,8 @@ declare namespace RJForm {
     fieldProps: FieldProps;
   }
 }
+
+// tslint:disable-next-line:export-just-namespace
+export = RJForm;
+export as namespace RJForm;
 
