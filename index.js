@@ -2,7 +2,7 @@
 
 let RJForm = null;
 if (process.env.NODE_ENV !== 'production') {
-  RJForm = require('./Form/index');
+  RJForm = require('./cjs/index.development');
   module.exports = RJForm;
 } else {
   RJForm = require('./cjs/index');

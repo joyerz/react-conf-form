@@ -1,10 +1,13 @@
 {
   "name": "react-conf-form",
-  "version": "1.0.64",
+  "version": "1.1.1",
   "description": "json配置化表单",
   "files": [
-    "./src"
+    "Form",
+    "cjs"
   ],
+  "main": "index.js",
+  "types": "index.d.ts",
   "scripts": {
     "start": "cross-env NODE_ENV=development webpack serve --config ./build/webpack.dev.js",
     "start-dev": "cross-env NODE_ENV=development webpack serve --config ./build/webpack.dev.js --history-api-fallback --inline",

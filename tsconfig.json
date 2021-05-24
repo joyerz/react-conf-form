@@ -12,8 +12,7 @@
     "allowJs": false, /* Allow javascript files to be compiled. */
     "typeRoots": [
       "./node_modules/@types",
-      "./src/@types",
-      "./src/Form/@types"
+      ".",
     ],
     "types": [
       "react",

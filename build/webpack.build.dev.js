@@ -10,7 +10,7 @@ const {
 } = base;
 
 module.exports = {
-  mode: 'production',
+  mode: 'development',
   devtool: false,
   performance: {
     hints: false,
@@ -33,12 +33,12 @@ module.exports = {
     portableRecords: true,
   },
 
-  entry: path.resolve(__dirname, '../src/Form/index.tsx'),
+  entry: path.resolve(__dirname, '../Form/index.tsx'),
   output: {
     path: path.resolve(__dirname, '../cjs'),
     // libraryTarget: 'commonjs2',
     libraryTarget: 'umd',
-    filename: 'index.js',
+    filename: 'index.development.js',
     crossOriginLoading: 'anonymous',
   },
   module: {
@@ -46,12 +46,9 @@ module.exports = {
   },
   resolve,
   plugins: [
-    new CleanWebpackPlugin({
-      cleanOnceBeforeBuildPatterns: ['**/*'],
-    }),
     new webpack.DefinePlugin({
       'process.env': {
-        NODE_ENV: JSON.stringify('production'),
+        NODE_ENV: JSON.stringify('development'),
       },
     }),
   ],
