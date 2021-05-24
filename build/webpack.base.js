@@ -1,7 +1,6 @@
 const path = require('path');
 const MiniCss = require('mini-css-extract-plugin');
-const WebpackHTMLPlugin = require('html-webpack-plugin');
-const StyleLintPlugin = require('stylelint-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 const resolve = {
   extensions: ['.js', '.ts', '.tsx', '.jsx', '.scss', '.less', '.json'],
@@ -73,28 +72,11 @@ const rules = [
 ];
 
 const plugins = [
-  new StyleLintPlugin({
-    context: 'src',
-    configFile: path.resolve(__dirname, '../stylelint.config.js'),
-    files: '**/*.(less|css|scss)',
-    failOnError: false,
-    quiet: true,
-    fix: true, // 修复不规范的样式代码
-    syntax: 'less',
-  }),
-
+  new CleanWebpackPlugin(),
   new MiniCss({
     filename: '[name].css',
     chunkFilename: '[id].css',
     ignore: 'warning',
-  }),
-
-  /*压缩优化代码结束*/
-  new WebpackHTMLPlugin({
-    template: path.resolve(__dirname, '../public/index.html'),
-    filename: './index.html',
-    inject: true,
-    // favicon: path.resolve(__dirname, '../src/assets/images/favicon.png')
   }),
 ];
 

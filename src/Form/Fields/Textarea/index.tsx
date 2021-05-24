@@ -20,5 +20,5 @@ export default function InputField(props: RJForm.IProps): JSX.Element {
     }
   };
 
-  return <Input {...fieldProps} onChange={onChangeThis} value={value} />;
+  return <Input.TextArea {...fieldProps} onChange={onChangeThis} />;
 }

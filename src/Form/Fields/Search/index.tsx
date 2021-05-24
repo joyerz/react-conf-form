@@ -1,7 +1,9 @@
 import React from 'react';
 import { Input } from 'antd';
 
-export default function InputField(props: RJForm.IProps): JSX.Element {
+const { Search } = Input;
+
+export default function SearchField(props: RJForm.IProps): JSX.Element {
   const {
     onFieldChange, name, value, fieldProps,
   } = props;
@@ -20,5 +22,5 @@ export default function InputField(props: RJForm.IProps): JSX.Element {
     }
   };
 
-  return <Input {...fieldProps} onChange={onChangeThis} value={value} />;
+  return <Search {...fieldProps} onChange={onChangeThis} />;
 }

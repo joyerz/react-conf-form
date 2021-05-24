@@ -1,5 +1,5 @@
 import React from 'react';
-import { Input } from 'antd';
+import { Radio } from 'antd';
 
 export default function InputField(props: RJForm.IProps): JSX.Element {
   const {
@@ -20,5 +20,7 @@ export default function InputField(props: RJForm.IProps): JSX.Element {
     }
   };
 
-  return <Input {...fieldProps} onChange={onChangeThis} value={value} />;
+  return (
+    <Radio.Group {...fieldProps} onChange={onChangeThis} value={value} />
+  );
 }

@@ -26,20 +26,20 @@ module.exports = {
           },
         },
       }),
-      new OptimizeCSSAssetsPlugin({}),
+      // new OptimizeCSSAssetsPlugin({}),
     ],
     mangleWasmImports: true,
     mergeDuplicateChunks: true,
-
     portableRecords: true,
   },
 
-  entry: path.resolve(__dirname, '../src/index.tsx'),
+  entry: path.resolve(__dirname, '../src/Form/index.tsx'),
   output: {
-    path: path.resolve(__dirname, '../dist'),
-    publicPath: '',
-    filename: 'js/[name].[hash:8].bundle.js',
-    chunkFilename: 'js/[name].[chunkhash].js',
+    path: path.resolve(__dirname, '../src/cjs'),
+    // library: 'react-json-form',
+    // libraryTarget: 'commonjs2',
+    libraryTarget: 'umd',
+    filename: 'index.js',
     crossOriginLoading: 'anonymous',
   },
   module: {
@@ -57,5 +57,21 @@ module.exports = {
     }),
     ...plugins,
   ],
+
+  externals: {
+    antd: 'antd',
+    '@ant-design': '@ant-design',
+    '@ant-icons': '@ant-icons',
+    react: 'react',
+    'react-dom': 'react-dom',
+    'react-router': 'react-router',
+    'react-router-dom': 'react-router-dom',
+    moment: 'moment',
+    classnames: 'classnames',
+    '@types/axios': '@types/axios',
+    'memoize-one': 'memoize-one',
+    memoize: 'memoize-one',
+    axios: 'axios',
+  },
 };
 

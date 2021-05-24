@@ -1,5 +1,5 @@
 import React from 'react';
-import { Input } from 'antd';
+import { Switch } from 'antd';
 
 export default function InputField(props: RJForm.IProps): JSX.Element {
   const {
@@ -7,7 +7,7 @@ export default function InputField(props: RJForm.IProps): JSX.Element {
   } = props;
 
   const onChangeThis = (...args) => {
-    const newValue = args[0].target.value;
+    const newValue = args[0];
 
     // 组件原来的onChange事件
     if (fieldProps.onChange) {
@@ -16,9 +16,9 @@ export default function InputField(props: RJForm.IProps): JSX.Element {
 
     // form的onChange
     if (onFieldChange) {
-      onFieldChange(name, newValue, value);
+      onFieldChange(name, newValue, !!value);
     }
   };
 
-  return <Input {...fieldProps} onChange={onChangeThis} value={value} />;
+  return <Switch {...fieldProps} onChange={onChangeThis} />;
 }

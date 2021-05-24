@@ -1,7 +1,10 @@
 {
   "name": "react-conf-form",
-  "private": true,
+  "version": "1.0.64",
   "description": "json配置化表单",
+  "files": [
+    "./src"
+  ],
   "scripts": {
     "start": "cross-env NODE_ENV=development webpack serve --config ./build/webpack.dev.js",
     "start-dev": "cross-env NODE_ENV=development webpack serve --config ./build/webpack.dev.js --history-api-fallback --inline",
