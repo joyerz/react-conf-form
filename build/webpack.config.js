@@ -6,16 +6,11 @@ const MiniCss = require('mini-css-extract-plugin')
 module.exports = {
   mode: 'development',
   devtool: 'inline-source-map',
-  entry: path.resolve(__dirname, '../src/index.tsx'),
+  entry: path.resolve(__dirname, '../src/example/index.tsx'),
   resolve: {
     extensions: ['.js', '.ts', '.tsx', '.jsx', '.scss', '.less', '.json'],
     alias: {
       '@src': path.resolve(__dirname, '../src'),
-      '@com': path.resolve(__dirname, '../src/components'),
-      '@utils': path.resolve(__dirname, '../src/utils'),
-      '@assets': path.resolve(__dirname, '../src/assets'),
-      '@conf': path.resolve(__dirname, '../src/conf'),
-      '@pages': path.resolve(__dirname, '../src/pages'),
       '@Form': path.resolve(__dirname, '../Form'),
     },
   },
@@ -29,16 +24,16 @@ module.exports = {
 
   module: {
     rules: [
-      {
-        loader: 'webpack-ant-icon-loader',
-        enforce: 'pre',
-        // options:{
-        //   chunkName:'antd-icons'
-        // },
-        include: [
-          require.resolve('@ant-design/icons/lib/dist'),
-        ],
-      },
+      // {
+      //   loader: 'webpack-ant-icon-loader',
+      //   enforce: 'pre',
+      //   // options:{
+      //   //   chunkName:'antd-icons'
+      //   // },
+      //   include: [
+      //     require.resolve('@ant-design/icons/lib/dist'),
+      //   ],
+      // },
       {
         test: /\.(ts|tsx)$/,
         exclude: /node_modules/,
@@ -97,7 +92,7 @@ module.exports = {
                     // 'link-color': '#1DA57A',
                     // 'border-radius-base': '2px',
                     // or
-                    hack: 'true; @import \'./src/assets/antd/variable.less\'',
+                    // hack: 'true; @import \'./src/assets/antd/variable.less\'',
                   },
                   javascriptEnabled: true,
                 },
@@ -157,7 +152,7 @@ module.exports = {
 
     /* 压缩优化代码结束 */
     new WebpackHTMLPlugin({
-      template: path.resolve(__dirname, '../src/index.html'),
+      template: path.resolve(__dirname, '../public/index.html'),
       filename: './index.html',
       inject: true,
     }),

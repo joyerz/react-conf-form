@@ -1,129 +1,139 @@
-import * as React from 'react'
+import type { Moment } from 'moment';
+import React from 'react';
+// declare enum Type {
+//   input = 'input',
+//   select = 'select',
+//   dropdown = 'dropdown',
+//   textarea = 'textarea',
+//   password = 'password',
+//   number = 'number'
+// }
 
+declare type Type =
+'input' | 'textarea' | 'password' | 'number' |
+'search' | 'select' | 'swtich' | 'switch' |
+'autoComplete' | 'checkbox' | 'checkboxGroup' |
+'datePicker' | 'rangePicker' | 'radio' |
+string;
 
-export default class Form extends React.Component<RJFormProps> {
-}
+declare namespace RJForm {
+  const Form: React.FC<FormProps>;
 
-export interface RJFormProps {
-  spinning?: boolean,
-  validateOnChange?: boolean, // onchange是否要验证
-  fields: Array<FieldsConfT>, // 表单配置
-  dataSource: {}, // 数据
-  onSubmit?: ActionModifyT, // 提交方法
-  onReset?: VoidFuncT, // 重置方法
-  onChange?: (name: string, value: string | number, data: {}) => void // onChange
-  extendValidators?: Array<ExtendValidator>
-  extendFields?: Array<ExtendField>
-  labelDirection?: 'vertical' | 'horizontal'
-  labelWidth?: number
-  id?: string
-}
-
-/* fields Conf */
-export interface FieldsConfT {
-  type?: 'Fields' | 'FormButtons'
-  gutter?: number
-  span?: number
-  align?: 'left' | 'right' | 'center' // for FormButtons
-  fields?: Array<FieldItemT | ButtonT>
-  props?: {
-    rules: Array<string>
-    [key: string]: any
-  },
-  style?: Object
-  className?: string
-  display?: boolean
-}
-
-export interface FieldItemT {
-  span?: number
-  offset?: number
-  key: string
-  type: string
-  label?: string | React.ReactNode
-  props?: FieldPropsT
-  render?: (data: Object) => any
-  className?: string
-  addon?: any
-  readOnly?: boolean
-  display?: boolean // display or not
-}
-
-
-type FieldPropsT = {
-  rules?: Array<any>,
-  [key: string]: any
-}
-
-export interface ButtonT {
-  span?: number
-  gutter?: number
-  label: string
-  key: string
-  display?: boolean
-  props?: {
-    type?: string
-    className?: string
-    cb?: (data: Object) => any
-    style?: any
-    addon?: (data: Object) => any
-    [name: string]: any
+  type DateType = Moment | null;
+  interface Layout {
+    gutter?: number;
+    span?: number;
   }
-}
-
-export type ButtonType = 'default' | 'primary' | 'danger' | 'link' | 'ghost'
-
-export type ActionModifyT = (params?: object) => void
-
-export type VoidFuncT = () => void
-
-// form validation extensions
-export interface ValidatorT {
-  [name: string]: ValidatorChildT
-}
-
-export interface ValidatorChildT {
-  validator: (value: any, length?: any) => boolean
-  errorMsg: any
-}
-
-export interface ExtendValidator extends ValidatorChildT {
-  name: string
-}
-
-export interface FieldRender {
-  name: string
-  component: any // React.Component<FieldRenderProps, any>,
-}
-
-export interface FieldRenderProps {
-  onChange?: (name: string, value: any) => any
-}
-
-export interface ExtendField {
-  name: string
-  component: any //React.Component<FieldRenderProps, any>,
-}
-
-export interface FieldComponentProps {
-  name: string,
-  data: any,
-  onChange: (key: string, value: any) => any
-  props: {
-    className: string & ButtonType,
-    onClick?: (data: Object) => any
-    beforeChange?: (key: string, value: any) => any
-    onChange?: (key: string, value: any) => any
-    items?: Array<labelValueObject>
-    [name: string]: any
+  interface FormProps {
+    span?: number;
+    gutter?: number;
+    labelDirection?: 'vertical' | 'horizontal';
+    labelWidth?: number;
+    schema: Schema; // 配置数据
+    data?: { [name:string]: any }; // 默认数据
+    validateOnChange?: boolean; // 是不是o的时候校验
+    onChange?: <T>(name: string, value: T, oldValue: T) => void;
+    onSubmit?: <T>(value: T) => void;
+    extendRules?: Rules[],
+    extendFields?: any[],
   }
-  display?: boolean
-  readonly?: boolean
-  value?: any,
-  [name: string]: any
+
+  type Schema = Row[];
+
+  type Row = ItemSchema[];
+
+  interface ItemSchema {
+    span?: number;
+    label?: string | (() => string);
+    name?: string;
+    type: Type;
+    display?: boolean;
+    fieldProps?: FieldProps;
+    isVertical?: boolean;
+    rules?: Rules[];
+    value?: any;
+  }
+
+  // 由Form传给field的props
+  interface IFieldProps {
+    onFieldChange: (name: string, value: any, oldValue: any) => void;
+  }
+
+  // 校验规则
+  interface Rules {
+    required?: boolean;
+    maxLength?: number;
+    minLength?: number;
+    length?: number;
+    max?: number;
+    min?: number;
+    integer?: boolean;
+    message?: string;
+    [name:string]: any;
+  }
+
+  interface RuleItem {
+    name: string;
+    validator: (value: any, ruleValue?: any) => boolean;
+    message: string | ((value: any) => string);
+  }
+
+  interface ValidatedResult {
+    state: boolean;
+    message?: string;
+  }
+
+  interface IColProps {
+    item: RJForm.ItemSchema,
+    span: number,
+    isVertical: boolean,
+    value: any,
+    onKeyPress: any,
+    onFieldChange: (name: string, value: any, oldValue?: any) => void,
+    validate: {
+      state: boolean;
+      message: string;
+    }
+  }
+
+  interface FieldItem {
+    label: string;
+    name: string;
+    type: Type;
+    span?: number;
+    fieldProps: FieldProps;
+  }
+
+  // 控件原来的Props
+  interface FieldProps {
+    [name: string]: any;
+  }
+
+  interface FieldRuleItem {
+    validator: (value: any, ruleValue: any) => boolean;
+    message: string | ((value: any) => string);
+    [name: string]: any;
+  }
+
+  interface ExtendFieldItem {
+    name: string;
+    component: React.FC<IProps>,
+  }
+
+  // 混合Props
+  interface IProps {
+    onFieldChange: <T>(name: string, newValue: T, T) => void;
+    name: string;
+    value: any;
+    fieldProps: FieldProps;
+    rules?: FieldRuleItem[];
+  }
+
+  function extendFields(fields: RJForm.ExtendFieldItem[]): void;
+  function extendRules(rules: RJForm.RuleItem[]): void;
 }
 
-export interface labelValueObject {
-  label: string,
-  value: any
-}
+// tslint:disable-next-line:export-just-namespace
+export = RJForm;
+export as namespace RJForm;
+

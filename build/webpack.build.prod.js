@@ -1,12 +1,35 @@
 const path = require('path')
 const webpack = require('webpack')
+const TerserJSPlugin = require('terser-webpack-plugin')
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
+const CleanWebpackPlugin = require('clean-webpack-plugin')
 const MiniCss = require('mini-css-extract-plugin')
+// const Visualizer = require('webpack-visualizer-plugin')
 
 module.exports = {
-  mode: 'development',
-  devtool: 'inline-source-map',
+  mode: 'production',
+  devtool: false,
+  performance: {
+    hints: false,
+    maxEntrypointSize: 512000,
+    maxAssetSize: 512000,
+  },
+  optimization: {
+    minimizer: [
+      new TerserJSPlugin({
+        terserOptions: {
+          compress: {
+            drop_console: true, // 删除console
+          },
+        },
+      }),
+      new OptimizeCSSAssetsPlugin({}),
+    ],
+    mangleWasmImports: true,
+    mergeDuplicateChunks: true,
+    portableRecords: true,
+  },
 
-  // entry: path.resolve(__dirname, '../src/index.tsx'),
   entry: path.resolve(__dirname, '../src/Form/index.tsx'),
   resolve: {
     extensions: ['.js', '.ts', '.tsx', '.jsx', '.scss', '.less', '.json'],
@@ -26,12 +49,22 @@ module.exports = {
     // libraryTarget: 'commonjs2',
     libraryTarget: 'umd',
     // libraryExport: 'default',
-    filename: 'index.dev.js',
+    filename: 'index.js',
     crossOriginLoading: 'anonymous',
   },
 
   module: {
     rules: [
+      // {
+      //   loader: 'webpack-ant-icon-loader',
+      //   enforce: 'pre',
+      //   // options: {
+      //   //   chunkName: 'antd-icons',
+      //   // },
+      //   include: [
+      //     require.resolve('@ant-design/icons/lib/dist'),
+      //   ],
+      // },
       {
         test: /\.(ts|tsx)$/,
         exclude: /node_modules/,
@@ -109,6 +142,7 @@ module.exports = {
   },
 
   plugins: [
+    new CleanWebpackPlugin(),
     //
     new webpack.DefinePlugin({
       'process.env': {
@@ -117,10 +151,14 @@ module.exports = {
     }),
 
     new MiniCss({
-      filename: 'index.dev.css',
+      filename: 'index.css',
     }),
 
-    /* 压缩优化代码结束 */
+    // new Visualizer({
+    //   filename: './statistics.html',
+    // }),
+
+    // /* 压缩优化代码结束 */
     // new WebpackHTMLPlugin({
     //   template: path.resolve(__dirname, '../src/index.html'),
     //   filename: './index.html',

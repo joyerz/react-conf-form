@@ -1,6 +1,6 @@
 if (process.env.NODE_ENV === 'production') {
-  module.exports = require('./index.prod.js')
+  module.exports = require('./src/umd/index.js')
 }
 else {
-  module.exports = require('./index.dev.js')
+  module.exports = require('./src/umd/index.dev.js')
 }
