@@ -1,7 +1,7 @@
-const path = require('path')
-const webpack = require('webpack')
-const WebpackHTMLPlugin = require('html-webpack-plugin')
-const MiniCss = require('mini-css-extract-plugin')
+const path = require('path');
+const webpack = require('webpack');
+const WebpackHTMLPlugin = require('html-webpack-plugin');
+const MiniCss = require('mini-css-extract-plugin');
 
 module.exports = {
   mode: 'development',
@@ -69,7 +69,10 @@ module.exports = {
           },
           {
             test: /\.less$/,
-            include: [/node_modules[\\/]antd/, /node_modules[\\/]react-conf-form/],
+            include: [
+              /node_modules[\\/]antd/,
+              /node_modules[\\/]react-conf-form/,
+            ],
             use: [
               {
                 loader: MiniCss.loader,
@@ -123,7 +126,10 @@ module.exports = {
               {
                 loader: 'sass-resources-loader',
                 options: {
-                  resources: path.resolve(__dirname, '../src/assets/styles/variable.scss'),
+                  resources: path.resolve(
+                    __dirname,
+                    '../src/assets/styles/variable.scss',
+                  ),
                 },
               },
             ],
@@ -164,11 +170,17 @@ module.exports = {
     host: '0.0.0.0',
     proxy: {
       '/api/**': {
-        target: 'https://www.apiopen.top/',
+        target: 'https://tower.wgine-daily.com:7799/v1.0/',
         secure: false,
         changeOrigin: true,
         pathRewrite: { '^/api': '' },
       },
+      '/upload/**': {
+        target: 'https://storage-daily.tuya-inc.cn/v1.0/',
+        secure: false,
+        changeOrigin: true,
+        pathRewrite: { '^/upload': '' },
+      },
     },
   },
-}
+};

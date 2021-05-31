@@ -34,7 +34,7 @@ const getRuleItemByName = (name: string): RJForm.RuleItem | null => {
  * @returns
  */
 export const validate = (
-  key:string,
+  key: string,
   value: any,
   rules: RJForm.RuleItem[],
 ): RJForm.ValidatedResult => {
@@ -72,8 +72,8 @@ export const validate = (
 
     // 如果是boolean的时候，true值需要校验
     if (
-      (typeof ruleValue === 'boolean' && ruleValue)
-      || ['string', 'number'].indexOf(typeof ruleValue) !== -1
+      (typeof ruleValue === 'boolean' && ruleValue) ||
+      ['string', 'number'].indexOf(typeof ruleValue) !== -1
     ) {
       const state = defaultRuleItem.validator(value);
       result = {

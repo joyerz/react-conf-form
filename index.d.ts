@@ -1,25 +1,27 @@
-import type { Moment } from 'moment';
+import moment from 'moment';
 import React from 'react';
-// declare enum Type {
-//   input = 'input',
-//   select = 'select',
-//   dropdown = 'dropdown',
-//   textarea = 'textarea',
-//   password = 'password',
-//   number = 'number'
-// }
 
 declare type Type =
-'input' | 'textarea' | 'password' | 'number' |
-'search' | 'select' | 'swtich' | 'switch' |
-'autoComplete' | 'checkbox' | 'checkboxGroup' |
-'datePicker' | 'rangePicker' | 'radio' |
-string;
+  | 'input'
+  | 'textarea'
+  | 'password'
+  | 'number'
+  | 'search'
+  | 'select'
+  | 'swtich'
+  | 'switch'
+  | 'autoComplete'
+  | 'checkbox'
+  | 'checkboxGroup'
+  | 'datePicker'
+  | 'rangePicker'
+  | 'radio'
+  | string;
 
 declare namespace RJForm {
   const Form: React.FC<FormProps>;
 
-  type DateType = Moment | null;
+  type DateType = moment.Moment | null;
   interface Layout {
     gutter?: number;
     span?: number;
@@ -30,12 +32,25 @@ declare namespace RJForm {
     labelDirection?: 'vertical' | 'horizontal';
     labelWidth?: number;
     schema: Schema; // 配置数据
-    data?: { [name:string]: any }; // 默认数据
+    data?: { [name: string]: any }; // 默认数据
     validateOnChange?: boolean; // 是不是o的时候校验
     onChange?: <T>(name: string, value: T, oldValue: T) => void;
     onSubmit?: <T>(value: T) => void;
-    extendRules?: Rules[],
-    extendFields?: any[],
+    extendRules?: Rules[];
+    extendFields?: any[];
+    submitter?: Submitter;
+  }
+
+  interface Submitter {
+    buttonTexts?: {
+      submit: string | boolean;
+      reset: string | boolean;
+    };
+    align?: 'start' | 'center' | 'end';
+    padding?: string;
+    direction?: 'horizontal' | 'vertical';
+
+    render?: (props?, defaultButtons?: JSX.Element[]) => JSX.Element;
   }
 
   type Schema = Row[];
@@ -49,9 +64,14 @@ declare namespace RJForm {
     type: Type;
     display?: boolean;
     fieldProps?: FieldProps;
+    customProps?: CustomProps;
     isVertical?: boolean;
     rules?: Rules[];
     value?: any;
+  }
+
+  interface CustomProps {
+    [name: string]: any;
   }
 
   // 由Form传给field的props
@@ -69,7 +89,7 @@ declare namespace RJForm {
     min?: number;
     integer?: boolean;
     message?: string;
-    [name:string]: any;
+    [name: string]: any;
   }
 
   interface RuleItem {
@@ -84,16 +104,16 @@ declare namespace RJForm {
   }
 
   interface IColProps {
-    item: RJForm.ItemSchema,
-    span: number,
-    isVertical: boolean,
-    value: any,
-    onKeyPress: any,
-    onFieldChange: (name: string, value: any, oldValue?: any) => void,
+    item: RJForm.ItemSchema;
+    span: number;
+    isVertical: boolean;
+    value: any;
+    onKeyPress: any;
+    onFieldChange: (name: string, value: any, oldValue?: any) => void;
     validate: {
       state: boolean;
       message: string;
-    }
+    };
   }
 
   interface FieldItem {
@@ -117,7 +137,7 @@ declare namespace RJForm {
 
   interface ExtendFieldItem {
     name: string;
-    component: React.FC<IProps>,
+    component: React.FC<IProps>;
   }
 
   // 混合Props
@@ -127,6 +147,7 @@ declare namespace RJForm {
     value: any;
     fieldProps: FieldProps;
     rules?: FieldRuleItem[];
+    customProps?: CustomProps;
   }
 
   function extendFields(fields: RJForm.ExtendFieldItem[]): void;
@@ -136,4 +157,3 @@ declare namespace RJForm {
 // tslint:disable-next-line:export-just-namespace
 export = RJForm;
 export as namespace RJForm;
-

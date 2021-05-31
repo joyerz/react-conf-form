@@ -3,9 +3,7 @@ import { DatePicker } from 'antd';
 import { getDateTimeStamp, getDateMoment } from '../../utils/date';
 
 export default function DatePickerField(props: RJForm.IProps): JSX.Element {
-  const {
-    onFieldChange, name, value, fieldProps,
-  } = props;
+  const { onFieldChange, name, value, fieldProps } = props;
 
   const onChangeThis = (...args) => {
     const newValue = getDateTimeStamp(args[0]);

@@ -1,31 +1,31 @@
 // import React from 'react';
-import { Type } from '../Form';
+import { Type } from './const';
+import { customRequest } from './upload';
 
 export default function getSchema(): RJForm.Schema {
   return [
-    [{
-      label: '输入',
-      name: 'input',
-      type: Type.input,
-      span: 12,
-      fieldProps: {
-        // onChange: (value: string) => console.log('value', value),
+    [
+      {
+        label: '输入',
+        name: 'input',
+        type: Type.input,
+        span: 12,
+        fieldProps: {
+          // onChange: (value: string) => console.log('value', value),
+        },
+        rules: [{ required: true }],
       },
-      rules: [{ required: true }],
-    },
-    {
-      label: '请输入',
-      name: 'input1',
-      type: Type.input,
-      span: 8,
-      fieldProps: {
-        // onChange: (value: string) => console.log('value', value),
+      {
+        label: '请输入',
+        name: 'input1',
+        type: Type.input,
+        span: 8,
+        fieldProps: {
+          // onChange: (value: string) => console.log('value', value),
+        },
+        rules: [{ requiredTest: true }, { minLength: 3 }],
       },
-      rules: [
-        { requiredTest: true },
-        { minLength: 3 },
-      ],
-    }],
+    ],
     [
       {
         label: '搜索',
@@ -42,8 +42,7 @@ export default function getSchema(): RJForm.Schema {
         name: 'textarea',
         type: Type.textarea,
         span: 12,
-        fieldProps: {
-        },
+        fieldProps: {},
       },
     ],
     [
@@ -52,16 +51,14 @@ export default function getSchema(): RJForm.Schema {
         name: 'password',
         type: Type.password,
         span: 12,
-        fieldProps: {
-        },
+        fieldProps: {},
       },
       {
         label: '数字',
         name: 'number',
-        type: Type.number,
+        type: 'number',
         span: 12,
-        fieldProps: {
-        },
+        fieldProps: {},
       },
     ],
     [
@@ -71,7 +68,10 @@ export default function getSchema(): RJForm.Schema {
         type: Type.select,
         span: 12,
         fieldProps: {
-          options: [{ label: '1', value: '1' }, { label: '2', value: '2' }],
+          options: [
+            { label: '1', value: '1' },
+            { label: '2', value: '2' },
+          ],
         },
       },
       {
@@ -79,8 +79,7 @@ export default function getSchema(): RJForm.Schema {
         name: 'switch',
         type: Type.switch,
         span: 12,
-        fieldProps: {
-        },
+        fieldProps: {},
       },
     ],
     [
@@ -90,7 +89,10 @@ export default function getSchema(): RJForm.Schema {
         type: Type.autoComplete,
         span: 12,
         fieldProps: {
-          options: [{ label: '12', value: '12' }, { label: '2', value: '2' }],
+          options: [
+            { label: '12', value: '12' },
+            { label: '2', value: '2' },
+          ],
         },
       },
       {
@@ -110,7 +112,10 @@ export default function getSchema(): RJForm.Schema {
         type: Type.checkboxGroup,
         span: 12,
         fieldProps: {
-          options: [{ label: '12', value: '12' }, { label: '2', value: '2' }],
+          options: [
+            { label: '12', value: '12' },
+            { label: '2', value: '2' },
+          ],
         },
       },
       {
@@ -131,7 +136,10 @@ export default function getSchema(): RJForm.Schema {
         type: Type.rangePicker,
         span: 12,
         fieldProps: {
-          options: [{ label: '12', value: '12' }, { label: '2', value: '2' }],
+          options: [
+            { label: '12', value: '12' },
+            { label: '2', value: '2' },
+          ],
         },
       },
       {
@@ -161,19 +169,36 @@ export default function getSchema(): RJForm.Schema {
         type: Type.radioGroup,
         span: 12,
         fieldProps: {
-          options: [{ label: '12', value: '12' }, { label: '2', value: '2' }],
+          options: [
+            { label: '12', value: '12' },
+            { label: '2', value: '2' },
+          ],
         },
       },
     ],
-    [{
-      label: '',
-      name: 'radioGroup',
-      type: 'customComponent',
-      span: 12,
-      fieldProps: {
-
+    [
+      {
+        label: '',
+        name: 'radioGroup',
+        type: 'customComponent',
+        span: 12,
+        fieldProps: {},
       },
-    }],
-
+      {
+        label: '上传',
+        name: 'image',
+        type: 'upload',
+        span: 12,
+        fieldProps: {
+          listType: 'picture-card',
+          customRequest: customRequest,
+        },
+        customProps: {
+          blobName: 'file',
+          uploadButtonText: '上传',
+        },
+        rules: [{ required: true }],
+      },
+    ],
   ];
 }

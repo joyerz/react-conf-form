@@ -46,16 +46,16 @@ const config = {
   ]
 }
 
-if (['dev', 'prod'].indexOf(process.env.NODE_ENV) === -1 || true) {
+if (['dev', 'prod'].indexOf(process.env.NODE_ENV) === -1) {
+  console.log('env', process.env.NODE_ENV);
   config.plugins.push([
     "import",
     {
       "libraryName": "antd",
       "libraryDirectory": "es",
       "style": true
-      // 会加载 less 文件 "style": "css"
     }
   ])
 }
-
+console.log(config.plugins[config.plugins.length -1])
 module.exports = config;

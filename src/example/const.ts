@@ -1,5 +1,3 @@
-export default {};
-
 export enum Type {
   input = 'input',
   search = 'search',

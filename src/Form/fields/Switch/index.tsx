@@ -2,9 +2,7 @@ import React from 'react';
 import { Switch } from 'antd';
 
 export default function InputField(props: RJForm.IProps): JSX.Element {
-  const {
-    onFieldChange, name, value, fieldProps,
-  } = props;
+  const { onFieldChange, name, value, fieldProps } = props;
 
   const onChangeThis = (...args) => {
     const newValue = args[0];
@@ -20,5 +18,5 @@ export default function InputField(props: RJForm.IProps): JSX.Element {
     }
   };
 
-  return <Switch {...fieldProps} onChange={onChangeThis} />;
+  return <Switch {...fieldProps} onChange={onChangeThis} checked={value} />;
 }

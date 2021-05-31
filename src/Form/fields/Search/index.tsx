@@ -4,9 +4,7 @@ import { Input } from 'antd';
 const { Search } = Input;
 
 export default function SearchField(props: RJForm.IProps): JSX.Element {
-  const {
-    onFieldChange, name, value, fieldProps,
-  } = props;
+  const { onFieldChange, name, value, fieldProps } = props;
 
   const onChangeThis = (...args) => {
     const newValue = args[0].target.value;
@@ -22,5 +20,5 @@ export default function SearchField(props: RJForm.IProps): JSX.Element {
     }
   };
 
-  return <Search {...fieldProps} onChange={onChangeThis} />;
+  return <Search {...fieldProps} onChange={onChangeThis} value={value} />;
 }

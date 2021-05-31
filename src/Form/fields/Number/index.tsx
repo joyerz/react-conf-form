@@ -2,9 +2,7 @@ import React from 'react';
 import { InputNumber } from 'antd';
 
 export default function InputField(props: RJForm.IProps): JSX.Element {
-  const {
-    onFieldChange, name, value, fieldProps,
-  } = props;
+  const { onFieldChange, name, value, fieldProps } = props;
 
   const onChangeThis = (newValue) => {
     // 组件原来的onChange事件
@@ -18,5 +16,5 @@ export default function InputField(props: RJForm.IProps): JSX.Element {
     }
   };
 
-  return <InputNumber {...fieldProps} onChange={onChangeThis} />;
+  return <InputNumber {...fieldProps} onChange={onChangeThis} value={value} />;
 }

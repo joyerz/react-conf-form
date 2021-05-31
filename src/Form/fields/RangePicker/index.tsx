@@ -3,9 +3,7 @@ import { DatePicker } from 'antd';
 import { getRangeTimeStamp, getRangeMoment } from '../../utils/date';
 
 export default function DatePickerField(props: RJForm.IProps): JSX.Element {
-  const {
-    onFieldChange, name, value, fieldProps,
-  } = props;
+  const { onFieldChange, name, value, fieldProps } = props;
 
   const onChangeThis = (...args) => {
     const newValue = getRangeTimeStamp(args[0]);
@@ -21,12 +19,11 @@ export default function DatePickerField(props: RJForm.IProps): JSX.Element {
     }
   };
 
-  const val = getRangeMoment(value);
   return (
     <DatePicker.RangePicker
       {...fieldProps}
       onChange={onChangeThis}
-      value={val}
+      value={getRangeMoment(value)}
     />
   );
 }

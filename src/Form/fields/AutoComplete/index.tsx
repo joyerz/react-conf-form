@@ -2,9 +2,7 @@ import React from 'react';
 import { AutoComplete } from 'antd';
 
 export default function InputField(props: RJForm.IProps): JSX.Element {
-  const {
-    onFieldChange, name, value, fieldProps,
-  } = props;
+  const { onFieldChange, name, value, fieldProps } = props;
 
   if (!fieldProps?.filterOption) {
     fieldProps.filterOption = (inputValue, option) =>

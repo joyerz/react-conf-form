@@ -2,9 +2,7 @@ import React from 'react';
 import { Select } from 'antd';
 
 export default function InputField(props: RJForm.IProps): JSX.Element {
-  const {
-    onFieldChange, name, value, fieldProps,
-  } = props;
+  const { onFieldChange, name, value, fieldProps } = props;
 
   const onChangeThis = (newValue) => {
     // const newValue = args[0].target.value;
@@ -20,5 +18,5 @@ export default function InputField(props: RJForm.IProps): JSX.Element {
     }
   };
 
-  return <Select {...fieldProps} onChange={onChangeThis} />;
+  return <Select {...fieldProps} onChange={onChangeThis} value={value} />;
 }

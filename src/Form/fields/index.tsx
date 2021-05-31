@@ -15,6 +15,7 @@ import RangePickerField from './RangePicker';
 import TimePickerField from './TimePicker';
 import RadioField from './Radio';
 import RadioGroupField from './RadioGroup';
+import UploadField from './Upload';
 
 // FieldMap
 const FieldMap = {
@@ -33,14 +34,18 @@ const FieldMap = {
   timePicker: TimePickerField,
   radio: RadioField,
   radioGroup: RadioGroupField,
+  upload: UploadField,
 };
 
-export default function DynamicField(props: RJForm.ItemSchema & RJForm.IFieldProps): JSX.Element {
+export default function DynamicField(
+  props: RJForm.ItemSchema & RJForm.IFieldProps,
+): JSX.Element {
   const {
     type,
     name,
     value,
     fieldProps = {},
+    customProps,
     onFieldChange,
   } = props;
 
@@ -51,6 +56,7 @@ export default function DynamicField(props: RJForm.ItemSchema & RJForm.IFieldPro
       name={name}
       value={value}
       fieldProps={fieldProps}
+      customProps={customProps}
       onFieldChange={onFieldChange}
     />
   );
