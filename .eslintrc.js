@@ -35,5 +35,6 @@ module.exports = {
     'react/display-name': [2],
     '@typescript-eslint/no-var-requires': 0,
     'react/prop-types': 'off',
+    'react/display-name': [false, { ignoreTranspilerName: false }],
   },
 };

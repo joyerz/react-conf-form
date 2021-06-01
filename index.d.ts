@@ -16,6 +16,7 @@ declare type Type =
   | 'datePicker'
   | 'rangePicker'
   | 'radio'
+  | 'render'
   | string;
 
 declare namespace RJForm {
@@ -69,6 +70,7 @@ declare namespace RJForm {
     isVertical?: boolean;
     rules?: Rules[];
     value?: any;
+    render?: () => JSX.Element | null;
   }
 
   interface CustomProps {

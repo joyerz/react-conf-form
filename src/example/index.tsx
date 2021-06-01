@@ -2,8 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import 'moment/locale/zh-cn';
-import { Form, extendFields, extendRules } from '../umd/index';
-// import { Form, extendFields, extendRules } from '../Form/index';
+// import { Form, extendFields, extendRules } from '../umd/index';
+import { Form, extendFields, extendRules } from '../Form/index';
 import 'antd/dist/antd.css';
 
 import getSchema from './conf';

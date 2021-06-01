@@ -14,4 +14,6 @@ export enum Type {
   timePicker = 'timePicker',
   radio = 'radio',
   radioGroup = 'radioGroup',
+  upload = 'upload',
+  render = 'render',
 }
