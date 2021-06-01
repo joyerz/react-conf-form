@@ -1,5 +1,5 @@
 import React from 'react';
-import { Upload, Spin, message } from 'antd';
+import { Upload, message } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 import { generateFileObjectByUrl } from './hepler';
 

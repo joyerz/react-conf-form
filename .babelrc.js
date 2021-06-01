@@ -1,35 +1,35 @@
 const config = {
   presets: [
-    "@babel/typescript",
+    '@babel/typescript',
     [
-      "@babel/preset-env",
+      '@babel/preset-env',
       {
-        "targets": "> 0.25%, not dead"
-      }
+        targets: '> 0.25%, not dead',
+      },
     ],
-    "@babel/preset-react"
+    '@babel/preset-react',
   ],
   plugins: [
     [
-      "@babel/plugin-proposal-private-methods",
+      '@babel/plugin-proposal-private-methods',
       {
-        "loose": true
-      }
+        loose: true,
+      },
     ],
-    "@babel/plugin-transform-runtime",
-    "@babel/plugin-proposal-optional-chaining",
-    "@babel/plugin-syntax-dynamic-import",
+    '@babel/plugin-transform-runtime',
+    '@babel/plugin-proposal-optional-chaining',
+    '@babel/plugin-syntax-dynamic-import',
     [
-      "@babel/plugin-proposal-decorators",
+      '@babel/plugin-proposal-decorators',
       {
-        "legacy": true
-      }
+        legacy: true,
+      },
     ],
     [
-      "@babel/plugin-proposal-class-properties",
+      '@babel/plugin-proposal-class-properties',
       {
-        "loose": true
-      }
+        loose: true,
+      },
     ],
     //    [
     //      "react-css-modules",
@@ -42,20 +42,19 @@ const config = {
     //        }
     //      }
     //    ],
-    
-  ]
-}
+  ],
+};
 
 if (['dev', 'prod'].indexOf(process.env.NODE_ENV) === -1) {
   console.log('env', process.env.NODE_ENV);
   config.plugins.push([
-    "import",
+    'import',
     {
-      "libraryName": "antd",
-      "libraryDirectory": "es",
-      "style": true
-    }
-  ])
+      libraryName: 'antd',
+      libraryDirectory: 'es',
+      style: true,
+    },
+  ]);
 }
-console.log(config.plugins[config.plugins.length -1])
+console.log(config.plugins[config.plugins.length - 1]);
 module.exports = config;

@@ -1,6 +1,6 @@
-const path = require('path')
-const webpack = require('webpack')
-const MiniCss = require('mini-css-extract-plugin')
+const path = require('path');
+const webpack = require('webpack');
+const MiniCss = require('mini-css-extract-plugin');
 
 module.exports = {
   mode: 'development',
@@ -94,13 +94,13 @@ module.exports = {
                 //   localIdentName: '[name]__[local]___[hash:base64:10]',
                 // },
               },
-              'sass-loader',
-              {
-                loader: 'sass-resources-loader',
-                options: {
-                  resources: path.resolve(__dirname, '../src/assets/styles/variable.scss'),
-                },
-              },
+              // 'sass-loader',
+              // {
+              //   loader: 'sass-resources-loader',
+              //   options: {
+              //     resources: path.resolve(__dirname, '../src/assets/styles/variable.scss'),
+              //   },
+              // },
             ],
           },
         ],
@@ -131,6 +131,7 @@ module.exports = {
     antd: 'antd',
     '@ant-design': '@ant-design',
     '@ant-icons': '@ant-icons',
+    '@ant-design/icons': '@ant-design/icons',
     react: 'react',
     'react-dom': 'react-dom',
     'react-router': 'react-router',
@@ -142,4 +143,4 @@ module.exports = {
     memoize: 'memoize-one',
     axios: 'axios',
   },
-}
+};

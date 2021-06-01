@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row } from 'antd';
+import { Row, Spin } from 'antd';
 
 import { randomString } from './utils/string';
 import { simpleClone } from './utils/object';
@@ -26,6 +26,7 @@ export function Form(props: RJForm.FormProps): JSX.Element {
     onChange,
     data = {},
     submitter,
+    spining = false,
   } = props;
 
   const [formData, setFormData] = useState(data);
@@ -175,30 +176,32 @@ export function Form(props: RJForm.FormProps): JSX.Element {
 
   // console.log('formData: ', formData);
   return (
-    <form id={formID} onSubmit={onFormSubmit}>
-      {schema.map((row, idx) => {
-        const rowKey = `row_${idx}`;
-        return (
-          <Row key={rowKey} gutter={gutter}>
-            {row.map((item) => (
-              <FormCol
-                key={item.name || randomString()}
-                item={item}
-                span={item.span || span}
-                isVertical={isVertical}
-                value={getValue(item.name)}
-                onFieldChange={onFieldChange}
-                onKeyPress={onKeyPress(item.type)}
-                validate={getValidateByName(item.name)}
-              />
-            ))}
-          </Row>
-        );
-      })}
+    <Spin spinning={spining}>
+      <form id={formID} onSubmit={onFormSubmit}>
+        {schema.map((row, idx) => {
+          const rowKey = `row_${idx}`;
+          return (
+            <Row key={rowKey} gutter={gutter}>
+              {row.map((item) => (
+                <FormCol
+                  key={item.name || randomString()}
+                  item={item}
+                  span={item.span || span}
+                  isVertical={isVertical}
+                  value={getValue(item.name)}
+                  onFieldChange={onFieldChange}
+                  onKeyPress={onKeyPress(item.type)}
+                  validate={getValidateByName(item.name)}
+                />
+              ))}
+            </Row>
+          );
+        })}
 
-      {submitter && (
-        <Footer {...submitter} onReset={onReset} onSubmit={onFormSubmit} />
-      )}
-    </form>
+        {submitter && (
+          <Footer {...submitter} onReset={onReset} onSubmit={onFormSubmit} />
+        )}
+      </form>
+    </Spin>
   );
 }

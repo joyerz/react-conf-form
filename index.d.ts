@@ -39,6 +39,7 @@ declare namespace RJForm {
     extendRules?: Rules[];
     extendFields?: any[];
     submitter?: Submitter;
+    spining?: boolean;
   }
 
   interface Submitter {

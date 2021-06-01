@@ -1,9 +1,9 @@
-const path = require('path')
-const webpack = require('webpack')
-const TerserJSPlugin = require('terser-webpack-plugin')
-const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
-const CleanWebpackPlugin = require('clean-webpack-plugin')
-const MiniCss = require('mini-css-extract-plugin')
+const path = require('path');
+const webpack = require('webpack');
+const TerserJSPlugin = require('terser-webpack-plugin');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+const MiniCss = require('mini-css-extract-plugin');
 // const Visualizer = require('webpack-visualizer-plugin')
 
 module.exports = {
@@ -127,13 +127,13 @@ module.exports = {
                 //   localIdentName: '[name]__[local]___[hash:base64:10]',
                 // },
               },
-              'sass-loader',
-              {
-                loader: 'sass-resources-loader',
-                options: {
-                  resources: path.resolve(__dirname, '../src/assets/styles/variable.scss'),
-                },
-              },
+              // 'sass-loader',
+              // {
+              //   loader: 'sass-resources-loader',
+              //   options: {
+              //     resources: path.resolve(__dirname, '../src/assets/styles/variable.scss'),
+              //   },
+              // },
             ],
           },
         ],
@@ -169,6 +169,7 @@ module.exports = {
     antd: 'antd',
     '@ant-design': '@ant-design',
     '@ant-icons': '@ant-icons',
+    '@ant-design/icons': '@ant-design/icons',
     react: 'react',
     'react-dom': 'react-dom',
     'react-router': 'react-router',
@@ -180,4 +181,4 @@ module.exports = {
     memoize: 'memoize-one',
     axios: 'axios',
   },
-}
+};
