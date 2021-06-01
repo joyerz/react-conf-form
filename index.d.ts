@@ -70,7 +70,7 @@ declare namespace RJForm {
     isVertical?: boolean;
     rules?: Rules[];
     value?: any;
-    render?: () => JSX.Element | null;
+    render?: (() => JSX.Element | null) | JSX.Element;
   }
 
   interface CustomProps {
