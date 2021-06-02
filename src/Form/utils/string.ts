@@ -17,7 +17,6 @@ export const notEmptyValue = (value: any): boolean => {
     return false;
   }
   // 数组也非空
-
   if (Array.isArray(value) && value.length === 0) {
     return false;
   }

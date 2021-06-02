@@ -20,7 +20,7 @@ export default function getSchema(): RJForm.Schema {
         fieldProps: {
           // onChange: (value: string) => console.log('value', value),
         },
-        rules: [{ required: true }],
+        rules: [{ required: false }, { min: 10 },{ length: 2 }],
       },
       {
         label: '请输入',
@@ -30,28 +30,31 @@ export default function getSchema(): RJForm.Schema {
         fieldProps: {
           // onChange: (value: string) => console.log('value', value),
         },
-        rules: [{ requiredTest: true }, { minLength: 3 }],
+        rules: [ { id_card: true }],
       },
     ],
-    // [
-    //   {
-    //     label: '搜索',
-    //     name: 'search',
-    //     type: Type.search,
-    //     span: 12,
-    //     fieldProps: {
-    //       enterButton: '搜索',
-    //       onSearch: (...args) => console.log('search', ...args),
-    //     },
-    //   },
-    //   {
-    //     label: '文本框',
-    //     name: 'textarea',
-    //     type: Type.textarea,
-    //     span: 12,
-    //     fieldProps: {},
-    //   },
-    // ],
+    [
+      {
+        label: '搜索',
+        name: 'search',
+        type: Type.search,
+        span: 12,
+        fieldProps: {
+          enterButton: '搜索',
+          onSearch: (...args) => console.log('search', ...args),
+        },
+      },
+      {
+        label: '文本框',
+        name: 'textarea',
+        type: Type.input,
+        span: 12,
+        fieldProps: {},
+        rules: [
+          {maxLength: 12}
+        ]
+      },
+    ],
     // [
     //   {
     //     label: '密码',
@@ -183,29 +186,30 @@ export default function getSchema(): RJForm.Schema {
     //     },
     //   },
     // ],
-    // [
-    //   {
-    //     label: '',
-    //     name: 'radioGroup',
-    //     type: 'customComponent',
-    //     span: 12,
-    //     fieldProps: {},
-    //   },
-    //   {
-    //     label: '上传',
-    //     name: 'image',
-    //     type: 'upload',
-    //     span: 12,
-    //     fieldProps: {
-    //       listType: 'picture-card',
-    //       customRequest: customRequest,
-    //     },
-    //     customProps: {
-    //       blobName: 'file',
-    //       uploadButtonText: '上传',
-    //     },
-    //     rules: [{ required: true }],
-    //   },
-    // ],
+    [
+      {
+        label: '',
+        name: 'radioGroup',
+        type: 'customComponent',
+        span: 12,
+        fieldProps: {},
+      },
+      {
+        label: '上传',
+        name: 'image',
+        type: 'upload',
+        span: 12,
+        fieldProps: {
+          listType: 'picture-card',
+          customRequest: customRequest,
+        },
+        customProps: {
+          blobName: 'file',
+          uploadButtonText: '上传',
+          editMode: true,
+        },
+        rules: [{ required: true }],
+      },
+    ],
   ];
 }

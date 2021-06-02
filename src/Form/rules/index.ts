@@ -75,7 +75,7 @@ export const validate = (
       (typeof ruleValue === 'boolean' && ruleValue) ||
       ['string', 'number'].indexOf(typeof ruleValue) !== -1
     ) {
-      const state = defaultRuleItem.validator(value);
+      const state = defaultRuleItem.validator(value, ruleValue);
       result = {
         state,
         message: state ? '' : msg,

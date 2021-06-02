@@ -156,6 +156,14 @@ declare namespace RJForm {
 
   function extendFields(fields: RJForm.ExtendFieldItem[]): void;
   function extendRules(rules: RJForm.RuleItem[]): void;
+
+  interface IUploadFile {
+    uuid: string;
+    name: string;
+    status: string;
+    url: string;
+  }
+  function generateFileObjectByUrl(url: string): IUploadFile;
 }
 
 // tslint:disable-next-line:export-just-namespace

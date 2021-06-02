@@ -123,15 +123,15 @@ module.exports = {
                 // },
               },
               'sass-loader',
-              {
-                loader: 'sass-resources-loader',
-                options: {
-                  resources: path.resolve(
-                    __dirname,
-                    '../src/assets/styles/variable.scss',
-                  ),
-                },
-              },
+              // {
+              //   loader: 'sass-resources-loader',
+              //   options: {
+              //     resources: path.resolve(
+              //       __dirname,
+              //       '../src/assets/styles/variable.scss',
+              //     ),
+              //   },
+              // },
             ],
           },
         ],

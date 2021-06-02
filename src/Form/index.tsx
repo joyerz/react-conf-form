@@ -11,6 +11,8 @@ import Footer from './Footer';
 export { extendFields } from './fields';
 export { extendRules } from './rules';
 
+export { generateFileObjectByUrl } from './fields/Upload/hepler';
+
 const { useEffect, useState } = React;
 
 const formID = `FORM_${randomString()}`;
@@ -42,6 +44,10 @@ export function Form(props: RJForm.FormProps): JSX.Element {
     };
   }, [labelDirection, labelWidth]);
 
+  useEffect(() => {
+    setFormData(data);
+  }, [data]);
+
   // 初始化数据
   useEffect(() => {
     const result = [];
@@ -59,7 +65,7 @@ export function Form(props: RJForm.FormProps): JSX.Element {
         }
       });
     });
-    console.log('init:', result, formData);
+    // console.log('init:', result, formData);
     setValidation(result);
   }, [schema]);
 

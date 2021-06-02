@@ -2,21 +2,21 @@ import React from 'react';
 import { Upload, message } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 import { generateFileObjectByUrl } from './hepler';
+import PicPreview from './PicPreview'
 
 const { useState, useEffect } = React;
 
 export default function UploadField(props: RJForm.IProps): JSX.Element {
   const { onFieldChange, name, value, fieldProps, customProps } = props;
-  const { maxSize = 2, maxLength = 1 } = customProps;
+  const { maxSize = 2, maxLength = 1, editMode = false } = customProps;
 
   const [fileList, setFileList] = useState([]);
+  const [preview, setPreview] = useState({visible: false, url: ''});
+  const [imagesUrls, setImagesUrls] = useState([]);
 
   useEffect(() => {
+    console.log('value', value);
     if (Array.isArray(value)) {
-      const hasStringFile =
-        value.findIndex((item) => typeof item === 'string') !== -1;
-      if (!hasStringFile) return;
-
       const defaultFileList = [];
       value.forEach((item) => {
         if (typeof item === 'string') {
@@ -35,12 +35,18 @@ export default function UploadField(props: RJForm.IProps): JSX.Element {
    */
   const onChangeThis = (files) => {
     const { fileList } = files;
+    // 转存response.url 到url
     fileList.forEach((file) => {
       if (!file.url && file.response?.url) {
         file.url = file.response?.url;
       }
     });
-    setFileList(fileList);
+
+    if (maxLength === 1 && editMode) {
+      fileList.splice(0, fileList.length -1);
+    } else {
+      setFileList(fileList);
+    }
 
     // 组件原来的onChange事件
     if (fieldProps.onChange) {
@@ -114,15 +120,52 @@ export default function UploadField(props: RJForm.IProps): JSX.Element {
     </div>
   );
 
+  const handlePreview = (file) => {
+    setPreview({
+      visible: true,
+      url: file.url,
+    });
+    const urls = fileList.filter(item => item.status === 'done' && item.url).map(item => item.url);
+    setImagesUrls(urls);
+  }
+  const handlePreviewCancel = () => {
+    setPreview({
+      visible: false,
+      url: '',
+    });
+  }
+
+  let showButton = false;
+  // 如果文件数小于限制
+  if(fileList.length < maxLength) {
+    showButton = true
+  }
+  // 如果文件数等于1并且是编辑模式
+  if (!showButton) {
+    showButton = fileList.length === 1 && editMode 
+  }
+  
   return (
+    <>
     <Upload
       {...fieldProps}
       customRequest={customRequest}
       beforeUpload={beforeUpload}
       onChange={onChangeThis}
+      onPreview={handlePreview}
       fileList={fileList}
     >
-      {fileList.length >= maxLength ? null : uploadButton}
+      {showButton && uploadButton}
     </Upload>
+
+    {preview.visible && (
+      <PicPreview
+        url={imagesUrls}
+        showList={false}
+        onHide={handlePreviewCancel}
+        current={preview.url}
+      />
+    )}
+    </>
   );
 }
