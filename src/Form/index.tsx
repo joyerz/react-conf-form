@@ -24,6 +24,8 @@ export function Form(props: RJForm.FormProps): JSX.Element {
     validateOnChange = true,
     schema,
     onChange,
+    onSubmit,
+    onReset,
     data = {},
     submitter,
     spining = false,
@@ -165,13 +167,14 @@ export function Form(props: RJForm.FormProps): JSX.Element {
       }
     };
 
-  const onReset = () => {
+  const onFormReset = () => {
     console.log('reset');
     const newValue = {};
     Object.keys(formData).forEach((key) => {
       newValue[key] = null;
     });
     setFormData(newValue);
+    onReset && onReset();
   };
 
   // console.log('formData: ', formData);

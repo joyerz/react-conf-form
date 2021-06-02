@@ -37,6 +37,7 @@ declare namespace RJForm {
     validateOnChange?: boolean; // 是不是o的时候校验
     onChange?: <T>(name: string, value: T, oldValue: T) => void;
     onSubmit?: <T>(value: T) => void;
+    onReset?: () => void;
     extendRules?: Rules[];
     extendFields?: any[];
     submitter?: Submitter;

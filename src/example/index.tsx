@@ -24,11 +24,25 @@ const data = {
   datepicker: 1621826961836,
 };
 
+const onReset = () => {
+  console.log('onReset')
+}
+const onSubmit = (data: any) => {
+  console.log('onSubmit', data)
+}
+
+const onChange = (...args) => {
+  console.log('change', ...args)
+}
+
+
 const root: HTMLElement = document.getElementById('app');
 ReactDOM.render(
   <div style={{ padding: '24px' }}>
     <ConfigProvider locale={locale}>
-      <Form schema={getSchema()} data={data} submitter={submitter} />
+      <Form 
+      schema={getSchema()} 
+      data={data} submitter={submitter} onChange={onChange} onReset={onReset} onSubmit={onSubmit} />
     </ConfigProvider>
   </div>,
   root,
