@@ -86,11 +86,10 @@ function JForm(props: RJForm.FormProps, ref): JSX.Element {
   const isAllValidated = (): boolean => {
     Object.keys(formData).forEach((key) => {
       const validateItem = validation.find((v) => v.name === key);
-      // console.log(key, validateItem);
       validateField(key, formData[key], validateItem?.type);
     });
     const notValidatedItemIndex = Object.keys(validation).findIndex(
-      (key) => validation[key].validated === false,
+      (key) => validation[key].state === false,
     );
     return notValidatedItemIndex === -1;
   };
@@ -161,12 +160,14 @@ function JForm(props: RJForm.FormProps, ref): JSX.Element {
     }));
   // }
 
-  const onFormSubmit = (e?): { [name: string]: any } | null => {
+  const onFormSubmit = (e?): boolean => {
     e && e.stopPropagation();
     // 提交前校验
-    if (!isAllValidated()) return;
+    if (!isAllValidated()) return false;
     console.log('on submit', formData);
     onSubmit && onSubmit(formData);
+
+    return false;
   };
 
   /**
