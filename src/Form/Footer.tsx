@@ -8,6 +8,7 @@ interface Iprops {
 export default function Footer(props: RJForm.Submitter & Iprops): JSX.Element {
   const {
     buttonTexts,
+    buttonProps = {},
     render,
     align = 'center',
     direction = 'horizontal',
@@ -18,12 +19,12 @@ export default function Footer(props: RJForm.Submitter & Iprops): JSX.Element {
   const { reset, submit } = buttonTexts || {};
   const config = {
     reset: {
-      type: 'default',
+      type: buttonProps?.reset?.type || 'default',
       cb: onReset,
       text: reset,
     },
     submit: {
-      type: 'primary',
+      type: buttonProps?.submit?.type || 'primary',
       cb: onSubmit,
       text: submit,
     },
@@ -31,10 +32,16 @@ export default function Footer(props: RJForm.Submitter & Iprops): JSX.Element {
 
   const defaultDom = [];
   Object.keys(buttonTexts).forEach((key) => {
+    const {  type, ...restProps} = buttonProps[key] || {};
     const item = buttonTexts[key];
     if (item) {
       defaultDom.push(
-        <Button type={config[key].type} key={key} onClick={config[key].cb}>
+        <Button 
+          type={config[key].type} 
+          key={key} 
+          onClick={config[key].cb}
+          {...restProps}
+        >
           {config[key].text}
         </Button>,
       );

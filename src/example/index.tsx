@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { createRef } from 'react';
 import ReactDOM from 'react-dom';
+
+import { Button } from 'antd';
 
 import 'moment/locale/zh-cn';
 // import { Form, extendFields, extendRules } from '../umd/index';
@@ -20,7 +22,7 @@ extendFields(customFields);
 extendRules(customRules);
 
 
-const { useState, useEffect } = React;
+const { useState, useEffect, useRef } = React;
 const NewForm = () => {
   const [data, setData] = useState({});
   useEffect(() => {
@@ -47,16 +49,25 @@ const NewForm = () => {
     console.log('change', ...args)
   }
 
-  console.log('formData', data);
+  const formRef: React.Ref<{callSubmit: () => void}> = useRef();
+  const handleClick = () => {
+    console.log('handleClick', formRef.current.callSubmit())
+  }
+
   return  (
-    <Form 
-      schema={getSchema()} 
-      data={data} 
-      submitter={submitter} 
-      onChange={onChange} 
-      onReset={onReset} 
-      onSubmit={onSubmit} 
-    />
+    <>
+      <Form 
+        ref={formRef}
+        schema={getSchema()} 
+        data={data} 
+        submitter={submitter} 
+        onChange={onChange} 
+        onReset={onReset} 
+        onSubmit={onSubmit} 
+      />
+
+      <Button type="primary" onClick={handleClick}>获取Form</Button>
+    </>
   )
 }
 

@@ -13,11 +13,11 @@ export { extendRules } from './rules';
 
 export { generateFileObjectByUrl } from './fields/Upload/hepler';
 
-const { useEffect, useState } = React;
+const { useEffect, useState, useImperativeHandle, forwardRef } = React;
 
 const formID = `FORM_${randomString()}`;
 
-export function Form(props: RJForm.FormProps): JSX.Element {
+function JForm(props: RJForm.FormProps, ref): JSX.Element {
   const {
     gutter = 24,
     span = 12,
@@ -30,7 +30,7 @@ export function Form(props: RJForm.FormProps): JSX.Element {
     onReset,
     data = {},
     submitter,
-    spining = false,
+    spinning = false,
   } = props;
 
   const [formData, setFormData] = useState(data);
@@ -44,6 +44,7 @@ export function Form(props: RJForm.FormProps): JSX.Element {
     };
   }, [labelDirection, labelWidth]);
 
+  // data变化
   useEffect(() => {
     setFormData(data);
   }, [data]);
@@ -152,12 +153,20 @@ export function Form(props: RJForm.FormProps): JSX.Element {
 
   const isVertical = labelDirection === 'vertical';
 
+  // if(ref){
+    useImperativeHandle(ref, () => ({
+      callSubmit: () => onFormSubmit(),
+      callValidate: () => isAllValidated(),
+      getData: () => formData,
+    }));
+  // }
+
   const onFormSubmit = (e?): { [name: string]: any } | null => {
     e && e.stopPropagation();
     // 提交前校验
     if (!isAllValidated()) return;
     console.log('on submit', formData);
-    return formData;
+    onSubmit && onSubmit(formData);
   };
 
   /**
@@ -173,19 +182,19 @@ export function Form(props: RJForm.FormProps): JSX.Element {
       }
     };
 
-  const onFormReset = () => {
-    console.log('reset');
-    const newValue = {};
-    Object.keys(formData).forEach((key) => {
-      newValue[key] = null;
-    });
-    setFormData(newValue);
-    onReset && onReset();
-  };
+  // const onFormReset = () => {
+  //   console.log('reset');
+  //   const newValue = {};
+  //   Object.keys(formData).forEach((key) => {
+  //     newValue[key] = null;
+  //   });
+  //   setFormData(newValue);
+  //   onReset && onReset();
+  // };
 
   // console.log('formData: ', formData);
   return (
-    <Spin spinning={spining}>
+    <Spin spinning={spinning}>
       <form id={formID} onSubmit={onFormSubmit}>
         {schema.map((row, idx) => {
           const rowKey = `row_${idx}`;
@@ -214,3 +223,7 @@ export function Form(props: RJForm.FormProps): JSX.Element {
     </Spin>
   );
 }
+
+
+export const Form = forwardRef(JForm);
+ 

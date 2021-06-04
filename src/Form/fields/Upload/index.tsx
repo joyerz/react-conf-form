@@ -8,7 +8,7 @@ const { useState, useEffect } = React;
 
 export default function UploadField(props: RJForm.IProps): JSX.Element {
   const { onFieldChange, name, value, fieldProps, customProps } = props;
-  const { maxSize = 2, maxLength = 1, editMode = false } = customProps;
+  const { maxSize = 2, maxLength = 1, editMode = false, disabled = false } = customProps;
 
   const [fileList, setFileList] = useState([]);
   const [preview, setPreview] = useState({visible: false, url: ''});
@@ -143,6 +143,9 @@ export default function UploadField(props: RJForm.IProps): JSX.Element {
   // 如果文件数等于1并且是编辑模式
   if (!showButton) {
     showButton = fileList.length === 1 && editMode 
+  }
+  if (disabled) {
+    showButton = false;
   }
   
   return (

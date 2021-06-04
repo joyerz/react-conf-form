@@ -41,7 +41,8 @@ declare namespace RJForm {
     extendRules?: Rules[];
     extendFields?: any[];
     submitter?: Submitter;
-    spining?: boolean;
+    spinning?: boolean;
+    ref?: any;
   }
 
   interface Submitter {
@@ -49,6 +50,16 @@ declare namespace RJForm {
       submit: string | boolean;
       reset: string | boolean;
     };
+    buttonProps?: {
+      submit?: {
+        type?: string;
+        [name: string]: string;
+      },
+      reset?: {
+        type?: string;
+        [name: string]: string;
+      },
+    }
     align?: 'start' | 'center' | 'end';
     padding?: string;
     direction?: 'horizontal' | 'vertical';
@@ -152,6 +163,12 @@ declare namespace RJForm {
     fieldProps: FieldProps;
     rules?: FieldRuleItem[];
     customProps?: CustomProps;
+  }
+
+  interface RefMehtod {
+    callSubmit: () => void;
+    callValidate: () => void;
+    getData: () => ({[name: string]: any});
   }
 
   function extendFields(fields: RJForm.ExtendFieldItem[]): void;

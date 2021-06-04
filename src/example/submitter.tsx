@@ -6,6 +6,12 @@ export default {
     reset: '重置',
     submit: '保存',
   },
+  buttonProps: {
+    reset: {
+      size: 'large',
+      className: '123'
+    }
+  },
   align: 'end' as const,
   direction: 'horizontal' as const,
   // eslint-disable-next-line
