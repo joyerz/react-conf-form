@@ -16,6 +16,7 @@ import TimePickerField from './TimePicker';
 import RadioField from './Radio';
 import RadioGroupField from './RadioGroup';
 import UploadField from './Upload';
+import CascaderField from './Cascader';
 
 
 // FieldMap
@@ -36,6 +37,7 @@ const FieldMap = {
   radio: RadioField,
   radioGroup: RadioGroupField,
   upload: UploadField,
+  cascader: CascaderField,
 };
 
 export default function DynamicField(

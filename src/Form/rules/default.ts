@@ -89,6 +89,14 @@ const defaultRules: RJForm.RuleItem[] = [
     message: '必须为整数'
   },
   {
+    name: 'positive_number',
+    validator: (value: string) => {
+      if (!notEmptyValue(value)) return true;
+      return parseFloat(value) > 0
+    },
+    message: '必须为正数'
+  },
+  {
     name: 'telephone',
     validator: (value: string) => {
       if (!notEmptyValue(value)) return true;
